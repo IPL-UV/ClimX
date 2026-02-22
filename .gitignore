@@ -3,6 +3,12 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# User-specific folders
+data/
+preprocessing_data_lite/
+results_lite/
+models_lite/
+
 # C extensions
 *.so
 

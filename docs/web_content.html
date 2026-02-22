@@ -1,0 +1,320 @@
+<section class="hero">
+    <div class="container">
+        <!-- <div class="hero-badge">IJCAI–ECAI 2026 challenge</div> -->
+        <img src="imgs/logo.png" alt="ClimX logo" class="hero-logo">
+        <h1>ClimX</h1>
+        <p class="subtitle">Extreme-aware climate model emulation</p>
+        <p class="hero-description">
+            Build fast, accurate machine learning emulators for the NorESM2-MM Earth System Model and quantify tail risks
+            in future climate projections.
+        </p>
+        <div class="hero-actions">
+            <a href="https://www.kaggle.com/competitions/climx" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" focusable="false" aria-hidden="true">
+                        <path d="M17 3H7a2 2 0 0 0-2 2v1a3 3 0 0 0 3 3h1v2.1a5 5 0 0 0 4 4.9V19H9a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-3v-3.1a5 5 0 0 0 4-4.9V9h1a3 3 0 0 0 3-3V5a2 2 0 0 0-2-2Zm-1 8a3 3 0 0 1-6 0V9h6v2ZM7 5h10v2H7V5Zm-2 1V5h1v2H8A1 1 0 0 1 5 6Zm14 1h-2V5h1v1a1 1 0 0 1 1 1Z"/>
+                    </svg>
+                </span>
+                Compete on Kaggle
+            </a>
+            <a href="https://huggingface.co/datasets/isp-uv-es/ClimX" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" focusable="false" aria-hidden="true">
+                        <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 2a5 5 0 0 1 5 5c0 1.65-1.02 4.25-2.52 6.72A39.7 39.7 0 0 1 12 18.7a39.7 39.7 0 0 1-2.48-2.98C8.02 13.25 7 10.65 7 9a5 5 0 0 1 5-5Zm-2 5a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2h-4Z"/>
+                    </svg>
+                </span>
+                Get the dataset
+            </a>
+            <a href="#baselines" class="btn btn-secondary">
+                <span class="btn-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" focusable="false" aria-hidden="true">
+                        <path d="M4 19a1 1 0 0 1-1-1V6a1 1 0 0 1 2 0v12h16a1 1 0 1 1 0 2H4Zm4-3a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6a1 1 0 0 1-1 1Zm4 0a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0v8a1 1 0 0 1-1 1Zm4 0a1 1 0 0 1-1-1V11a1 1 0 1 1 2 0v4a1 1 0 0 1-1 1Z"/>
+                    </svg>
+                </span>
+                See baselines
+            </a>
+        </div>
+
+        <div class="hero-stats" aria-label="Challenge highlights">
+            <div class="stat-item">
+                <div class="stat-value">Daily</div>
+                <div class="stat-label">outputs</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">1°</div>
+                <div class="stat-label">spatial resolution</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">7</div>
+                <div class="stat-label">target variables</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">15</div>
+                <div class="stat-label">extreme indices</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt" id="about">
+    <div class="container">
+        <h2>What is ClimX?</h2>
+        <p class="lead">A benchmark built for the question that matters: how will extremes change?</p>
+
+        <div class="two-col-grid">
+            <div>
+                <h3>Motivation</h3>
+                <p>
+                    Earth System Models (ESMs) are our best tools to study climate futures, but they are computationally expensive.
+                    This limits how densely we can explore uncertainty (scenarios, initial conditions, and model structure) and makes it hard
+                    to answer policy-relevant questions about rare but high-impact events.
+                </p>
+                <p>
+                    Climate emulators are lightweight surrogates that approximate ESM outputs, enabling rapid experimentation and risk assessment.
+                </p>
+            </div>
+            <div>
+                <h3>The task</h3>
+                <p>
+                    Build a model that predicts daily 2D maps of climate variables at NorESM2-MM resolution, driven by forcing trajectories and,
+                    optionally, past climate state.
+                </p>
+                <div class="callout">
+                    <div class="callout-title">Formulation</div>
+                    <div class="callout-body">
+                        $$x_t = g(f_t, f_{t-1}, f_{t-2}, \dots, f_{t-\tau}, x_{t-1}, x_{t-2}, \dots, x_{t-\tau})$$
+                        <div class="callout-note">\(x_t\): climate state, \(f_t\): external forcing at time \(t\)</div>
+                    </div>
+                </div>
+                <p class="small-muted">
+                    Training: historical (1850–2014) + SSP1-2.6, SSP3-7.0, SSP5-8.5 (2015–2100). Testing: held-out SSP2-4.5 (2015–2100).
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="data">
+    <div class="container">
+        <h2>Data and access</h2>
+        <p class="lead">Two-tier distribution: full-resolution training on Hugging Face, lightweight prototyping on Kaggle</p>
+
+        <div class="platform-boxes">
+            <div class="platform-box">
+                <h3>Hugging Face (full)</h3>
+                <p class="platform-size">~200GB, full resolution (Zarr)</p>
+                <ul class="platform-list">
+                    <li><strong>Best for:</strong> full-resolution training and final model development</li>
+                    <li><strong>Format:</strong> Zarr (streamable / chunked)</li>
+                    <li><strong>Includes:</strong> historical + training SSP targets and forcings; SSP2-4.5 test forcings (no targets)</li>
+                    <div class="callout-body">
+                        <li><strong>Historical:</strong> <code>(lat: 192, lon: 288, time: 60224)</code></li>
+                        <li><strong>Projections:</strong> <code>(lat: 192, lon: 288, time: 31389)</code></li>
+                    </div>
+                </ul>
+                <p><a href="https://huggingface.co/datasets/isp-uv-es/ClimX" target="_blank" rel="noopener noreferrer">Open dataset page</a></p>
+            </div>
+            <div class="platform-box">
+                <h3>Kaggle (lite)</h3>
+                <p class="platform-size">&lt;1GB, 16× spatially coarsened lite (debug)</p>
+                <ul class="platform-list">
+                    <li><strong>Best for:</strong> fast prototyping and validating end-to-end pipelines</li>
+                    <li><strong>Format:</strong> competition “Data” bundle (lightweight exports)</li>
+                    <li><strong>Same task:</strong> same variables and split logic, at reduced spatial resolution</li>
+                    <div class="callout-body">
+                        <li><strong>Historical:</strong> <code>(lat: 12, lon: 18, time: 60224)</code></li>
+                        <li><strong>Projections:</strong> <code>(lat: 12, lon: 18, time: 31389)</code></li>
+                    </div>
+                </ul>
+                <p><a href="https://www.kaggle.com/competitions/climx/data" target="_blank" rel="noopener noreferrer">Open competition data</a></p>
+            </div>
+        </div>
+
+        <div class="two-col-grid">
+            <div>
+                <h3>Inputs</h3>
+                <p>
+                    Forcing variables include greenhouse gases (global) and aerosols (spatial). Aerosol inputs are temporally sparse for some scenarios,
+                    and are interpolated to monthly values.
+                </p>
+                <div class="visuals-grid">
+                    <figure>
+                        <a href="imgs/ghg.png" target="_blank" rel="noopener noreferrer"><img src="imgs/ghg.png" alt="Greenhouse gas forcing time series"></a>
+                        <figcaption>Greenhouse gas inputs across scenarios.</figcaption>
+                    </figure>
+                    <figure>
+                        <a href="imgs/aerosols.png" target="_blank" rel="noopener noreferrer"><img src="imgs/aerosols.png" alt="Aerosol emissions inputs"></a>
+                        <figcaption>Aerosol emission inputs.</figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div>
+                <h3>Targets</h3>
+                <p>
+                    Your emulator can predict daily 2D maps (192×288) of 7 variables (useful for diagnostics and for computing extremes):
+                </p>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Variable</th>
+                                <th>Description</th>
+                                <th>Units</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>tas</code></td><td>Near-surface air temperature</td><td>K</td></tr>
+                            <tr><td><code>tasmax</code></td><td>Daily max near-surface air temperature</td><td>K</td></tr>
+                            <tr><td><code>tasmin</code></td><td>Daily min near-surface air temperature</td><td>K</td></tr>
+                            <tr><td><code>pr</code></td><td>Precipitation</td><td>kg/(m² s)</td></tr>
+                            <tr><td><code>huss</code></td><td>Near-surface specific humidity</td><td>kg/kg</td></tr>
+                            <tr><td><code>psl</code></td><td>Sea level pressure</td><td>Pa</td></tr>
+                            <tr><td><code>sfcWind</code></td><td>Near-surface wind speed</td><td>m/s</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="small-muted"><a href="visualizations.html">See more visualizations</a></p>
+                <p class="small-muted">
+                    Benchmark target: the leaderboard score is computed on <strong>15 extreme indices</strong> derived from daily temperature and precipitation.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt" id="evaluation">
+    <div class="container">
+        <h2>Evaluation focused on extremes</h2>
+        <p class="lead">Because averages hide risk: extremes determine impacts</p>
+
+        <div class="two-col-grid">
+            <div>
+                <h3>Primary score</h3>
+                <p>
+                    Models are scored on 15 derived extreme indices, using the mean standardized mean absolute error:
+                </p>
+                <div class="callout">
+                    <div class="callout-body">
+                        $$S = \frac{1}{15}\sum_{i=1}^{15}\frac{\mathrm{MAE}(\hat{Y}_i, Y_i)}{\sigma_i}$$
+                        <div class="callout-note">
+                            \(\hat{Y}_i\): predicted index map, \(Y_i\): ground truth, \(\sigma_i\): historical standard deviation for index \(i\).
+                        </div>
+                    </div>
+                </div>
+                <p class="small-muted">
+                    Standardization ensures indices with different units (Kelvin vs precipitation) contribute comparably.
+                </p>
+            </div>
+            <div>
+                <h3>Why indices?</h3>
+                <p>
+                    Indices convert daily fields into impact-relevant summaries: how hot the hottest day gets, how long droughts persist,
+                    how much rain falls during the wettest multi-day event, and how the fraction of rainfall from extremes changes.
+                </p>
+            </div>
+        </div>
+
+        <h3>The 15 indices and the questions they answer</h3>
+        <div class="index-grid">
+            <div class="index-category">
+                <h4>Temperature extremes</h4>
+                <ul class="index-list">
+                    <li><strong>TXx</strong>, <strong>TNn</strong>: hottest day / coldest night intensity (heatwaves, cold snaps)</li>
+                    <li><strong>SU</strong>, <strong>TR</strong>: frequency of hot days and hot nights (human thermal stress)</li>
+                    <li><strong>FD</strong>, <strong>ID</strong>: frost and ice days (ecosystems and agriculture)</li>
+                    <li><strong>WSDI</strong>, <strong>CSDI</strong>: warm/cold spell duration (persistence of extremes)</li>
+                    <li><strong>GSL</strong>: growing season length (shifts in crop calendars)</li>
+                </ul>
+            </div>
+            <div class="index-category">
+                <h4>Precipitation extremes</h4>
+                <ul class="index-list">
+                    <li><strong>Rx5day</strong>: intensity of multi-day rainfall events (flood risk)</li>
+                    <li><strong>CDD</strong>, <strong>CWD</strong>: dry/wet spell persistence (drought and prolonged wet periods)</li>
+                    <li><strong>R95pTOT</strong>: share of rainfall from very wet days (tail-dominated precipitation regimes)</li>
+                    <li><strong>R10mm</strong>, <strong>SDII</strong>: frequency and intensity of heavy rain (infrastructure design)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="callout subtle">
+            <div class="callout-title">Submission rules (summary)</div>
+            <div class="callout-body">
+                <ul class="rules-list">
+                    <li>Use only the data provided by the organizers for training (no external CMIP6 data; no models pre-trained on CMIP6).</li>
+                    <li>Submit predictions via Kaggle.</li>
+                    <li>Teams are limited to <strong>10</strong> members (team merges allowed up to one month before the deadline).</li>
+                    <li>Organizers may run validity checks and request training/inference code and weights; suspicious entries may be temporarily removed while being reviewed.</li>
+                    <li>To be eligible for prizes and final ranking, top-ranked participants must open-source code and weights under an MIT or Apache-2.0 license.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="timeline">
+    <div class="container">
+        <h2>Timeline</h2>
+        <p class="lead">Proposed schedule for the IJCAI 2026 ClimX challenge</p>
+        <div class="timeline">
+            <div class="timeline-item"><strong>April 15, 2026</strong> — Challenge launch (Kaggle + Hugging Face release)</div>
+            <div class="timeline-item"><strong>July 15, 2026</strong> — Submission deadline (Kaggle evaluation closes)</div>
+            <div class="timeline-item"><strong>July 30, 2026</strong> — Winner notifications</div>
+            <div class="timeline-item"><strong>August 15–21, 2026</strong> — Workshop session at IJCAI 2026 (Bremen)</div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt" id="baselines">
+    <div class="container">
+        <h2>Baselines and results</h2>
+        <p class="lead">Reference implementations and their performance reports</p>
+
+        <div class="baselines-list">
+            <!-- This list is populated automatically by the generator -->
+            <ul class="fancy-list">
+                <!-- Dynamic content -->
+            </ul>
+        </div>
+
+        <div class="visuals-grid">
+            <figure>
+                <a href="imgs/taylor_nonlinear_example.png" target="_blank" rel="noopener noreferrer"><img src="imgs/taylor_nonlinear_example.png" alt="Taylor diagram example"></a>
+                <figcaption>Example Taylor diagram comparing baseline behavior.</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<section class="section cta" id="get-started">
+    <div class="container">
+        <h2>Get started</h2>
+        <p class="lead">From zero to a valid submission</p>
+        <div class="cta-steps">
+            <div class="cta-step">
+                <div class="step-number">1</div>
+                <h3>Download data</h3>
+                <p>Use ClimX-lite on Kaggle for quick iteration or download the full dataset on Hugging Face for full-resolution training.</p>
+            </div>
+            <div class="cta-step">
+                <div class="step-number">2</div>
+                <h3>Train an emulator</h3>
+                <p>Start from the provided baselines and improve speed, accuracy, and extreme fidelity.</p>
+            </div>
+            <div class="cta-step">
+                <div class="step-number">3</div>
+                <h3>Submit on Kaggle</h3>
+                <p>Submit your predicted indices on Kaggle.</p>
+            </div>
+        </div>
+        <div class="cta-actions" style="margin-top: 1.5rem;">
+            <a href="https://www.kaggle.com/competitions/climx" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open competition page</a>
+            <a href="https://huggingface.co/datasets/isp-uv-es/ClimX" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Open dataset page</a>
+        </div>
+
+        <div class="organizers">
+            <p><strong>Image and Signal Processing Lab, University of València</strong> · <a href="mailto:oscar.pellicer@uv.es">oscar.pellicer@uv.es</a></p>
+            <p class="small-muted">Oscar Pellicer · Esther Rodrigo Bonet · Kai-Hendrik Cohrs · Maria Gonzalez · Nathan Mankovich · Gustau Camps-Valls</p>
+        </div>
+    </div>
+</section>
