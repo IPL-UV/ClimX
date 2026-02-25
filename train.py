@@ -21,14 +21,14 @@ dataset = open_climx_virtual_datasets(data_path, DATA_VERSION)
 # --- Preprocess the data (id needed) ---
 from src.data_preprocessing.preprocessing import preprocess_train
 
-precomputed = True
+precomputed = False
 preprocessing_path = Path(f"preprocessing_data_{DATA_VERSION}/")
 
 if not precomputed:
     X_train, y_train, metadata = preprocess_train(
             dataset, 
             preprocessing_path=preprocessing_path,
-            version='lite',
+            version=DATA_VERSION,
             scaling_params_path=None
     )
 else:

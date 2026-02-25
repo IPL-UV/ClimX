@@ -66,7 +66,9 @@ def monthly_climatology_to_daily(climatology: xr.Dataset, time: xr.DataArray) ->
     days_in_year = days_in_each_year.sel(year=time.dt.year).reset_coords(drop=True)
     target_month_coord = (dayofyear - 1) / (days_in_year - 1) * 11 + 1
 
-    return climatology_padded.interp(month=target_month_coord, method='cubic')
+    clim_interp_padded = climatology_padded.interp(month=target_month_coord, method='cubic')
+    
+    return clim_interp_padded
 
 
 def _stationarize_single_scenario(data, climatology, reverse=False, stationarization_mode='monthly', daily_climatology=None):

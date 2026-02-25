@@ -44,3 +44,4 @@ dependencies:
       - lightning==2.5.6
       - pint-xarray
       - pint-pandas
+      - huggingface_hub
