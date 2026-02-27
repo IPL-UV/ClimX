@@ -21,7 +21,7 @@ dataset = open_climx_virtual_datasets(data_path, DATA_VERSION)
 # --- Preprocess the data (id needed) ---
 from src.data_preprocessing.preprocessing import preprocess_train
 
-precomputed = True
+precomputed = False
 preprocessing_path = Path(f"preprocessing_data_{DATA_VERSION}/")
 
 if not precomputed:

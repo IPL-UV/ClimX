@@ -528,7 +528,9 @@ def cwd(ds: xr.Dataset, thresh: str = "1 mm/day", freq: str = "YS", **_) -> xr.D
 def sdii(ds: xr.Dataset, freq: str = "YS", thresh: str = 1, **_) -> xr.DataArray:
     pr = _precip_mm_day(ds)
     wet = pr.where(pr >= thresh)
-    return wet.resample(time=freq).sum() / wet.resample(time=freq).count()
+    wet_sum = wet.resample(time=freq).sum(dim="time")
+    wet_count = wet.resample(time=freq).count(dim="time")
+    return xr.where(wet_count == 0, 0, wet_sum / wet_count)
 
 
 def r10mm(ds: xr.Dataset, freq: str = "YS", **_) -> xr.DataArray:
