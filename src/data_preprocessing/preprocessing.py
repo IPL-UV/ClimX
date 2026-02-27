@@ -54,6 +54,16 @@ def preprocess_train(ds, preprocessing_path: Path, version: str, scaling_params_
 
     ds = ds.train
 
+    # Drop time_month and time_year dimensions/coordinates if they exist
+    ds_hist = ds_hist.drop_vars(['time_month', 'time_year'], errors='ignore')
+
+    # Then drop any remaining dimensions by selecting index 0 if they somehow remain
+    if 'time_month' in ds_hist.dims:
+        ds_hist = ds_hist.isel(time_month=0, drop=True)
+    if 'time_year' in ds_hist.dims:
+        ds_hist = ds_hist.isel(time_year=0, drop=True)
+
+
     if scaling_params_path is not None:
         with open(scaling_params_path, 'r') as f:
             scaling_params_data = json.load(f)
@@ -169,9 +179,10 @@ def preprocess_train(ds, preprocessing_path: Path, version: str, scaling_params_
             climatologies = [target_climatology]
             logger.info("Computing monthly climatology for daily forcing variables...")
             forcing_ds = ds_hist[FORCING_VARIABLES]
-            #if np.issubdtype(forcing_ds.time_month.dtype, np.number):
-            #    forcing_ds = xr.decode_cf(forcing_ds)
+            # if np.issubdtype(forcing_ds.time_month.dtype, np.number):
+            #     forcing_ds = xr.decode_cf(forcing_ds)
             forcing_climatology = compute_climatology(forcing_ds, 'monthly')
+            
             climatologies.append(forcing_climatology)
 
             climatology = xr.merge(climatologies)
