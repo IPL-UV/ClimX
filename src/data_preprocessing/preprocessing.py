@@ -13,6 +13,7 @@ logger = logging.getLogger(__name__)
 
 TARGET_VARIABLES = ["huss", "pr", "psl", "sfcWind", "tas", "tasmax", "tasmin"]
 FORCING_VARIABLES = ["BC_AX", "BC_N", "SO2", "SO4_PR", "OM_NI", "CO2_LBC", "N2O_LBC", "CH4_LBC", "CFC11eq_LBC", "CF2CL2_LBC"]
+AEROSOL_VARS = ['BC_AX', 'BC_N', 'SO2', 'SO4_PR', 'OM_NI']
 LOG_TRANSFORM_INFO = {
         "pr": {
             "epsilon": 1e-06
@@ -43,6 +44,14 @@ def preprocess_train(ds, preprocessing_path: Path, version: str, scaling_params_
     Preprocesses the dataset for the model.
     """
     ds_hist = ds.hist
+
+    ds_hist = ds_hist.drop_vars(['time_month', 'time_year'], errors='ignore')
+    # Then drop any remaining dimensions by selecting index 0 if they somehow remain
+    if 'time_month' in ds_hist.dims:
+        ds_hist = ds_hist.isel(time_month=0, drop=True)
+    if 'time_year' in ds_hist.dims:
+        ds_hist = ds_hist.isel(time_year=0, drop=True)
+
     ds = ds.train
 
     # Drop time_month and time_year dimensions/coordinates if they exist
@@ -131,6 +140,15 @@ def preprocess_train(ds, preprocessing_path: Path, version: str, scaling_params_
                 if var in y_transformed:
                     y_transformed = log_transform(y_transformed, [var], epsilon=info['epsilon'])
     
+    # Separate emission rates in AEROSOLS
+    logger.info("Separating positive/negative values and creating zero masks for aerosol variables...")
+    for var in AEROSOL_VARS:
+        logger.info(var)
+        X_transformed[f'{var}_positive'] = X_transformed[var].where(X_transformed[var] > 0, 0)
+        X_transformed[f'{var}_negative'] =  - (X_transformed[var].where(X_transformed[var] < 0, 0))
+        X_transformed[f'{var}_zeros_mask'] = (X_transformed[var] == 0).astype(np.float32) 
+        X_transformed = X_transformed.drop_vars(var)
+    
     # Compute climatology if not computed yet
     climatology_path = preprocessing_path / f"climatology_{version}.nc"
     if climatology_path.exists():
@@ -214,8 +232,12 @@ def preprocess_train(ds, preprocessing_path: Path, version: str, scaling_params_
         # Enforce exact coordinate alignment; fail loudly if X/y don't match in time/space.
         all_data = xr.merge([X_anomalies, y_anomalies], join='exact', compat='no_conflicts')
         from .preprocessing_utils import compute_scaling_params
-        scaling_values = compute_scaling_params(all_data, target_vars, forcing_vars, 
-                                               aerosol_vars=['BC_AX', 'BC_N', 'SO2', 'SO4_PR', 'OM_NI'],
+        scaling_values = compute_scaling_params(all_data, target_vars, ['BC_AX_positive', 'BC_AX_negative', 'BC_AX_zeros_mask',
+                                                             'BC_N_positive', 'BC_N_negative', 'BC_N_zeros_mask',
+                                                                'SO2_positive', 'SO2_negative', 'SO2_zeros_mask', 
+                                                               'SO4_PR_positive', 'SO4_PR_negative', 'SO4_PR_zeros_mask',
+                                                                'OM_NI_positive', 'OM_NI_negative', 'OM_NI_zeros_mask',  
+                                                                "CO2_LBC", "N2O_LBC", "CH4_LBC", "CFC11eq_LBC", "CF2CL2_LBC"],
                                                log_transform_info=log_transform_info)
         
         scaling_methods = {var: {'method': 'standardize'} for var in (target_vars + forcing_vars) if var in all_data}
@@ -340,6 +362,15 @@ def preprocess_test(ds, preprocessing_path: Path, version: str, scaling_params_p
                 info = log_transform_info[var]
                 if var in X_transformed:
                     X_transformed = log_transform(X_transformed, [var], epsilon=info['epsilon'])
+    
+    # Separate emission rates in AEROSOLS
+    logger.info("Separating positive/negative values and creating zero masks for aerosol variables...")
+    for var in AEROSOL_VARS:
+        logger.info(var)
+        X_transformed[f'{var}_positive'] = X_transformed[var].where(X_transformed[var] > 0, 0)
+        X_transformed[f'{var}_negative'] =  - (X_transformed[var].where(X_transformed[var] < 0, 0))
+        X_transformed[f'{var}_zeros_mask'] = (X_transformed[var] == 0).astype(np.float32) 
+        X_transformed = X_transformed.drop_vars(var)
 
     # Compute climatology if not computed yet
     climatology_path = preprocessing_path / f"climatology_{version}.nc"

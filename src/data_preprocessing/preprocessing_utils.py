@@ -12,13 +12,19 @@ def log_transform(data, variables, epsilon=1e-3, max_exponent=12, reverse=False)
     for var in variables:
         if not reverse:
             # Clip data at epsilon before log transform to avoid log of negative values, which creates NaNs.
-            clipped_data = np.maximum(data_transformed[var], 0)
-            data_transformed[var] = np.log(clipped_data + epsilon)
+            if var in ['pr', 'huss']:
+                # Log base 10 for precipitation and huss
+                data_transformed[var] = np.log10(data_transformed[var] + epsilon)
+            elif var in ['BC_AX', 'BC_N', 'SO2', 'SO4_PR', 'OM_NI']:
+                # Absolute log10 for aerosols
+                data_transformed[var] = np.sign(data_transformed[var]) * np.log10(np.abs(data_transformed[var]) + epsilon)
             logger.info(f"Log-transformed {var} with epsilon={epsilon}")
         else:
             # Clip data to max_exponent
             data_transformed[var] = np.minimum(data_transformed[var], max_exponent)
-            data_transformed[var] = np.exp(data_transformed[var]) - epsilon
+            if var in ['pr', 'huss']:
+                # Log base 10 for precipitation and huss
+                data_transformed[var] = (10 ** data_transformed[var]) - epsilon
             # Ensure the result is non-negative
             data_transformed[var] = np.maximum(data_transformed[var], 0)
             logger.info(f"Reversed log-transform for {var} with epsilon={epsilon}")
@@ -229,7 +235,7 @@ def compute_climatology(ds: xr.Dataset, method: str = 'monthly'):
 
 
 def compute_scaling_params(ds: xr.Dataset, target_vars: list[str], forcing_vars: list[str], 
-                             aerosol_vars: list[str], log_transform_info: dict, aerosol_threshold: float = 0.1,
+                             log_transform_info: dict, aerosol_threshold: float = 0.1,
                              std_epsilon: float = 1e-9):
     """
     Computes global scaling parameters (mean and std) for variables.

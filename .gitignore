@@ -5,6 +5,7 @@ __pycache__/
 
 # User-specific folders
 data/
+submission_lite/
 preprocessing_data_lite/
 results_lite/
 models_lite/
