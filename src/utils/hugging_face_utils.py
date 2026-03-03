@@ -69,6 +69,7 @@ class ClimXVirtualDatasets:
 def open_climx_virtual_datasets(
     root_dir: str | Path,
     variant: Variant = "lite",
+    parallel = True,
     *,
     engine: str = "netcdf4",
     chunks: object = "auto",
@@ -102,8 +103,8 @@ def open_climx_virtual_datasets(
             f"Expected exactly one test forcings file under {d} (matching '*test_forcings_ssp245.nc'), found {len(test_files)}."
         )
 
-    ds_hist = xr.open_mfdataset([str(p) for p in hist_files], combine="by_coords", engine=engine, chunks=chunks, parallel=True)
-    ds_train = xr.open_mfdataset([str(p) for p in train_files], combine="by_coords", engine=engine, chunks=chunks, parallel=True)
+    ds_hist = xr.open_mfdataset([str(p) for p in hist_files], combine="by_coords", engine=engine, chunks=chunks, parallel=parallel)
+    ds_train = xr.open_mfdataset([str(p) for p in train_files], combine="by_coords", engine=engine, chunks=chunks, parallel=parallel)
     ds_test = xr.open_dataset(str(test_files[0]), engine=engine, chunks=chunks)
 
     return ClimXVirtualDatasets(hist=ds_hist, train=ds_train, test_forcings=ds_test)

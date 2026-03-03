@@ -325,17 +325,18 @@ class GNNBaseline(Emulator):
         train_dataloader = DataLoader(
             train_dataset,
             batch_size=None,
-            num_workers= 16#int(trainer_params.get('num_workers', 0)),
+            num_workers= int(trainer_params.get('num_workers', 0)),
         )
         val_dataloader = DataLoader(
             val_dataset,
             batch_size=None,
-            num_workers= 16#int(trainer_params.get('num_workers', 0)),
+            num_workers= int(trainer_params.get('num_workers', 0)),
         )
         
         logger.info("GNNBaseline ready to fit ...")
         trainer_params_with_callbacks.pop('batch_size', None)  # Remove batch_size if present
         trainer_params_with_callbacks.pop('model_path', None)  # Remove model_path if present
+        trainer_params_with_callbacks.pop('num_workers', None)
         self.trainer = pl.Trainer(**trainer_params_with_callbacks)
 
         self.trainer.fit(self.model, train_dataloader, val_dataloader)
