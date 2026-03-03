@@ -406,6 +406,7 @@ class GNNBaseline(Emulator):
 
         n_lat = int(X.sizes['lat'])
         n_lon = int(X.sizes['lon'])
+        pixel_batch = n_lat * n_lon
         n_time = int(X.sizes[time_dim])
         n_pixels = n_lat * n_lon
         feature_vars = list(X.data_vars)
