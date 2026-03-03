@@ -171,8 +171,6 @@ def preprocess_train(ds, preprocessing_path: Path, version: str, scaling_params_
             info = log_transform_info[var]
             ds_hist = log_transform(ds_hist, [var], epsilon=info['epsilon'])
 
-        log_transform_info = {var: {'epsilon': epsilon} for var, epsilon in LOG_TRANSFORM_INFO.items()}
-
         if stationarization_mode != 'none':
             target_climatology = compute_climatology(ds_hist[target_vars], stationarization_mode)
 

@@ -9,7 +9,7 @@ import pandas as pd
 
 # Add src to path to import generate_results_report
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
-from visualization.generate_results_report import generate_reports_from_dir
+from docs.generate_results_report import generate_reports_from_dir
 
 # Configuration
 DOCS_DIR = 'docs'
