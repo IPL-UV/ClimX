@@ -326,7 +326,7 @@ class GNNBaseline(Emulator):
             train_dataset,
             batch_size=None,
             num_workers= int(trainer_params.get('num_workers', 0)),
-        )
+
         val_dataloader = DataLoader(
             val_dataset,
             batch_size=None,
@@ -407,6 +407,7 @@ class GNNBaseline(Emulator):
 
         n_lat = int(X.sizes['lat'])
         n_lon = int(X.sizes['lon'])
+        pixel_batch = n_lat * n_lon
         n_time = int(X.sizes[time_dim])
         n_pixels = n_lat * n_lon
         feature_vars = list(X.data_vars)
