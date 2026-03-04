@@ -112,8 +112,8 @@ class GNNDailyIterableDataset(IterableDataset):
                 p1 = min(self.n_pixels, p0 + self.pixel_batch)
                 xb = torch.from_numpy(x[p0:p1]).to(dtype=torch.float32)
                 yb = torch.from_numpy(yt[p0:p1]).to(dtype=torch.float32)
-                xb = xb.reshape(-1,1,  self.n_lat*self.n_lon, self.feature_vars.__len__()) # (batch_pixels, features, time)
-                yb = yb.reshape(-1,1,  self.n_lat*self.n_lon, self.target_vars.__len__()) # (batch_pixels, targets, time)
+                xb = xb.reshape(-1,1,  self.n_lat*self.n_lon, x.shape[1]) # (batch_pixels, features, time)
+                yb = yb.reshape(-1,1,  self.n_lat*self.n_lon, yt.shape[1]) # (batch_pixels, targets, time)
                 #ib = torch.from_numpy(lat_lon_idx[p0:p1]).to(dtype=torch.long)
                 yield xb, yb #, ib
 
@@ -370,7 +370,7 @@ class GNNBaseline(Emulator):
         *,
         target_vars: list[str] | None = None,
         time_chunk: int = 30,
-        pixel_batch: int = 192*288,
+        pixel_batch: int = 216, #nlax*nlon
         out_path: str | Path | None = None,
         out_chunks: dict | None = None,
     ):
