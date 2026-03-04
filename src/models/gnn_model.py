@@ -39,7 +39,7 @@ class GNNDailyIterableDataset(IterableDataset):
         self,
         X: xr.Dataset,
         y: xr.Dataset,
-        time_chunk: int = 10,
+        time_chunk: int = 30,
         pixel_batch: int = 4096,
         shuffle_time: bool = True,
         dtype: str = 'float32',
@@ -248,8 +248,8 @@ class GNNBaseline(Emulator):
         y_val_stacked = y_val.stack(sample=('forcing_scenario', 'time'))
 
         # Keep sample chunked so reads are small and sequential.
-        X_val_stacked = X_val_stacked.chunk({"sample": trainer_params.get('time_chunk', 10)})
-        y_val_stacked = y_val_stacked.chunk({"sample": trainer_params.get('time_chunk', 10)})
+        X_val_stacked = X_val_stacked.chunk({"sample": trainer_params.get('time_chunk', 30)})
+        y_val_stacked = y_val_stacked.chunk({"sample": trainer_params.get('time_chunk', 30)})
 
         # Prepare train data (first 80 years)
         X_train = X_train.sel(time=slice('2015-01-01', '2080-12-31'))
@@ -260,8 +260,8 @@ class GNNBaseline(Emulator):
         y_train_stacked = y_train.stack(sample=('forcing_scenario', 'time'))
 
         # Keep sample chunked so reads are small and sequential.
-        X_train_stacked = X_train_stacked.chunk({"sample": trainer_params.get('time_chunk', 10)})
-        y_train_stacked = y_train_stacked.chunk({"sample": trainer_params.get('time_chunk', 10)})
+        X_train_stacked = X_train_stacked.chunk({"sample": trainer_params.get('time_chunk', 30)})
+        y_train_stacked = y_train_stacked.chunk({"sample": trainer_params.get('time_chunk', 30)})
         n_lat = int(X_train.sizes['lat'])
         n_lon = int(X_train.sizes['lon'])
 
@@ -269,16 +269,16 @@ class GNNBaseline(Emulator):
         train_dataset = GNNDailyIterableDataset(
             X_train_stacked,
             y_train_stacked,
-            time_chunk=trainer_params.get('time_chunk', 10),
-            pixel_batch=int(trainer_params.get('pixel_batch', n_lat*n_lon*10)),#4096)),
+            time_chunk=trainer_params.get('time_chunk', 30),
+            pixel_batch=int(trainer_params.get('pixel_batch', n_lat*n_lon*30)),#4096)),
             shuffle_time=True,
         )
 
         val_dataset = GNNDailyIterableDataset(
             X_val_stacked,
             y_val_stacked,
-            time_chunk=trainer_params.get('time_chunk', 10),
-            pixel_batch=int(trainer_params.get('pixel_batch', n_lat*n_lon*10)),#4096)),
+            time_chunk=trainer_params.get('time_chunk', 30),
+            pixel_batch=int(trainer_params.get('pixel_batch', n_lat*n_lon*30)),#4096)),
             shuffle_time=True,
         )
 
@@ -369,7 +369,7 @@ class GNNBaseline(Emulator):
         X: xr.Dataset,
         *,
         target_vars: list[str] | None = None,
-        time_chunk: int = 1,
+        time_chunk: int = 30,
         pixel_batch: int = 192*288,
         out_path: str | Path | None = None,
         out_chunks: dict | None = None,
