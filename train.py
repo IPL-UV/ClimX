@@ -28,7 +28,7 @@ if not precomputed:
     X_train, y_train, metadata = preprocess_train(
             dataset, 
             preprocessing_path=preprocessing_path,
-            version='lite',
+            version=DATA_VERSION,
             scaling_params_path=None
     )
 else:
