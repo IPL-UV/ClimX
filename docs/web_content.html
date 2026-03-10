@@ -102,7 +102,7 @@
         <div class="platform-boxes">
             <div class="platform-box">
                 <h3>Hugging Face (full)</h3>
-                <p class="platform-size">~200GB, full resolution (Zarr)</p>
+                <p class="platform-size">172GB, full resolution (NetCDF)</p>
                 <ul class="platform-list">
                     <li><strong>Best for:</strong> full-resolution training and final model development</li>
                     <li><strong>Format:</strong> Zarr (streamable / chunked)</li>
@@ -116,7 +116,7 @@
             </div>
             <div class="platform-box">
                 <h3>Kaggle (lite)</h3>
-                <p class="platform-size">&lt;1GB, 16× spatially coarsened lite (debug)</p>
+                <p class="platform-size">800Mb, 16× spatially coarsened lite (debug)</p>
                 <ul class="platform-list">
                     <li><strong>Best for:</strong> fast prototyping and validating end-to-end pipelines</li>
                     <li><strong>Format:</strong> competition “Data” bundle (lightweight exports)</li>
@@ -191,25 +191,29 @@
             <div>
                 <h3>Primary score</h3>
                 <p>
-                    Models are scored on 15 derived extreme indices, using the mean standardized mean absolute error:
+                    Models are scored on 15 derived extreme indices using the region-wise <strong>normalized Nash&ndash;Sutcliffe efficiency (nNSE)</strong>.
+                    Cell-level \(R^2\) is transformed via \(\mathrm{nNSE}_{ij} = R^2_{ij}/(2-R^2_{ij})\), mapping \(R^2\) to \((-1,1]\).
+                    Regional scores are area-weighted over AR6 land regions and then averaged uniformly:
                 </p>
                 <div class="callout">
                     <div class="callout-body">
-                        $$S = \frac{1}{15}\sum_{i=1}^{15}\frac{\mathrm{MAE}(\hat{Y}_i, Y_i)}{\sigma_i}$$
+                        $$\mathrm{nNSE}_{kv} = \frac{\sum_{(i,j)\in k \cap \mathcal{V}} \cos\phi_i \, \mathrm{nNSE}_{ij}}{\sum_{(i,j)\in k \cap \mathcal{V}} \cos\phi_i}$$
+                        $$S = \frac{1}{|V|}\sum_{v \in V}\frac{1}{|K_v|}\sum_{k \in K_v}\mathrm{nNSE}_{kv}$$
                         <div class="callout-note">
-                            \(\hat{Y}_i\): predicted index map, \(Y_i\): ground truth, \(\sigma_i\): historical standard deviation for index \(i\).
+                            \(S=1\): perfect agreement, \(S=0\): mean predictor, and \(S\to -1\): pathological performance. Cells with negligible temporal variability are excluded.
                         </div>
                     </div>
                 </div>
-                <p class="small-muted">
-                    Standardization ensures indices with different units (Kelvin vs precipitation) contribute comparably.
-                </p>
             </div>
             <div>
                 <h3>Why indices?</h3>
                 <p>
                     Indices convert daily fields into impact-relevant summaries: how hot the hottest day gets, how long droughts persist,
                     how much rain falls during the wettest multi-day event, and how the fraction of rainfall from extremes changes.
+                </p>
+                <h3>Why nNSE?</h3>
+                <p>
+                    Using nNSE instead of a raw error ensures the score is bounded, physically interpretable, and comparable across indices with different units and scales.
                 </p>
             </div>
         </div>

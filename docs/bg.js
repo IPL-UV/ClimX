@@ -18,8 +18,13 @@
     node: "rgba(255, 255, 255, 0.55)",
     nodeGlow: "rgba(39, 174, 96, 0.20)",
     line: "rgba(255, 255, 255, 0.14)",
-    lineAccent: "rgba(39, 174, 96, 0.20)",
   };
+
+  // Mouse Gaussian-kernel interaction knobs.
+  const MOUSE_SIGMA = 250;                          // influence radius (px)
+  const MOUSE_SIGMA2 = MOUSE_SIGMA * MOUSE_SIGMA * 2; // 2σ²
+  const MOUSE_REPULSE = 380;                        // repulsion force peak strength
+  const MOUSE_ENERGY  = 5.0;                        // noise-amplitude multiplier at kernel peak
 
   const DPR = Math.min(window.devicePixelRatio || 1, 2);
   const state = {
@@ -28,13 +33,8 @@
     nodes: [],
     mouseX: null,
     mouseY: null,
-    mouseInfluence: 0, // 0 = wander, 1 = orbit around mouse
     raf: null,
     lastT: performance.now(),
-    cx: 0,
-    cy: 0,
-    targetX: 0,
-    targetY: 0,
   };
 
   function sizeCanvas() {
@@ -71,7 +71,7 @@
   function makeNodes() {
     const isSmall = Math.min(state.w, state.h) < 820;
     // Orbit field: spread around the mouse with continuous radial oscillation.
-    const count = isSmall ? 22 : 36;
+    const count = isSmall ? 35 : 60;
 
     const minR = isSmall ? 28 : 40;
     const maxR = isSmall ? 190 : 280;
@@ -121,104 +121,24 @@
     const dt = clamp((t - state.lastT) / 1000, 0.008, 0.05);
     state.lastT = t;
 
-    // Clear with slight transparency to avoid harshness.
     ctx.clearRect(0, 0, state.w, state.h);
 
     const mx = state.mouseX;
     const my = state.mouseY;
     const hasMouse = Number.isFinite(mx) && Number.isFinite(my);
 
-    // Smoothly blend between wander and orbit influence.
-    const influenceTarget = hasMouse ? 1 : 0;
-    // Smaller rates = slower join/spread transitions.
-    // Enter (mouse returns) slightly faster than exit (mouse leaves), but both are intentionally slow.
-    const influenceRate = hasMouse ? 1.35 : 0.85;
-    state.mouseInfluence = lerp(state.mouseInfluence, influenceTarget, 1 - Math.exp(-dt * influenceRate));
-
-    // Orbit center: follow mouse when present, otherwise drift near center.
-    state.targetX = hasMouse ? mx : state.w * 0.5;
-    state.targetY = hasMouse ? my : state.h * 0.45;
-    // Smaller rate = more inertia (cluster lags behind cursor, not "stuck" to it).
-    const centerFollowRate = 2.2;
-    state.cx = lerp(state.cx, state.targetX, 1 - Math.exp(-dt * centerFollowRate));
-    state.cy = lerp(state.cy, state.targetY, 1 - Math.exp(-dt * centerFollowRate));
+    const isSmall = Math.min(state.w, state.h) < 820;
+    const baseMaxSpeed = isSmall ? 44 : 58;
+    const friction = Math.pow(0.02, dt); // time-step-independent-ish
+    const baseNoiseAmp = isSmall ? 10 : 14;
 
     const linkDist = Math.min(Math.max(state.w, state.h) * 0.13, 210);
     const linkDist2 = linkDist * linkDist;
 
-    // Wander parameters (active mostly when mouse is away).
-    const wanderStrength = (1 - state.mouseInfluence);
-    const isSmall = Math.min(state.w, state.h) < 820;
-    const maxSpeed = isSmall ? 44 : 58;
-    const friction = Math.pow(0.02, dt); // time-step-independent-ish
-    const noiseAmp = (isSmall ? 10 : 14) * wanderStrength;
-    const repulseDist = (isSmall ? 28 : 34);
+    // Node–node soft repulsion (keeps nodes spread regardless of mouse).
+    const repulseDist  = isSmall ? 28 : 34;
     const repulseDist2 = repulseDist * repulseDist;
-    const repulseK = (isSmall ? 120 : 170) * wanderStrength;
-
-    // Mild separation/repulsion so nodes "separate" while wandering.
-    if (wanderStrength > 0.02) {
-      for (let i = 0; i < state.nodes.length; i++) {
-        const a = state.nodes[i];
-        for (let j = i + 1; j < state.nodes.length; j++) {
-          const b = state.nodes[j];
-          const dx = a.wx - b.wx;
-          const dy = a.wy - b.wy;
-          const d2 = dx * dx + dy * dy;
-          if (d2 <= 1e-6 || d2 > repulseDist2) continue;
-          const d = Math.sqrt(d2);
-          const ux = dx / d;
-          const uy = dy / d;
-          const f = (1 - d / repulseDist) * repulseK * dt;
-          a.vx += ux * f;
-          a.vy += uy * f;
-          b.vx -= ux * f;
-          b.vy -= uy * f;
-        }
-      }
-    }
-
-    // Update nodes: wander state + orbit target, then blend.
-    for (const n of state.nodes) {
-      // Wander: free drift with smooth pseudo-noise acceleration.
-      n.wanderPhaseX += dt * (0.7 + Math.abs(n.drift) * 10);
-      n.wanderPhaseY += dt * (0.6 + Math.abs(n.drift) * 9);
-      n.vx += Math.cos(n.wanderPhaseX + n.angle * 0.2) * noiseAmp * dt;
-      n.vy += Math.sin(n.wanderPhaseY + n.angle * 0.2) * noiseAmp * dt;
-
-      // Friction + cap speed.
-      n.vx *= friction;
-      n.vy *= friction;
-      const sp = Math.hypot(n.vx, n.vy);
-      if (sp > maxSpeed) {
-        n.vx = (n.vx / sp) * maxSpeed;
-        n.vy = (n.vy / sp) * maxSpeed;
-      }
-
-      n.wx += n.vx * dt;
-      n.wy += n.vy * dt;
-
-      // Wrap around edges (keeps motion continuous).
-      if (n.wx < -20) n.wx = state.w + 20;
-      if (n.wx > state.w + 20) n.wx = -20;
-      if (n.wy < -20) n.wy = state.h + 20;
-      if (n.wy > state.h + 20) n.wy = -20;
-
-      // Orbit: same as before.
-      n.angle += (n.angVel + n.drift) * dt;
-      n.radialPhase += n.radialVel * dt;
-      const rr = n.baseR + n.radialAmp * Math.sin(n.radialPhase);
-      const ox = state.cx + Math.cos(n.angle) * rr;
-      const oy = state.cy + Math.sin(n.angle) * rr;
-
-      // Blend: wander when mouse away, orbit around mouse when present.
-      const x = lerp(n.wx, ox, state.mouseInfluence);
-      const y = lerp(n.wy, oy, state.mouseInfluence);
-      n.x = clamp(x, -10, state.w + 10);
-      n.y = clamp(y, -10, state.h + 10);
-    }
-
-    // Draw links.
+    const repulseK     = isSmall ? 120 : 170;
     for (let i = 0; i < state.nodes.length; i++) {
       const a = state.nodes[i];
       for (let j = i + 1; j < state.nodes.length; j++) {
@@ -226,12 +146,70 @@
         const dx = a.x - b.x;
         const dy = a.y - b.y;
         const d2 = dx * dx + dy * dy;
-        if (d2 > linkDist2) continue;
-
+        if (d2 <= 1e-6 || d2 > repulseDist2) continue;
         const d = Math.sqrt(d2);
-        const alpha = (1 - d / linkDist) * 0.9;
+        const ux = dx / d, uy = dy / d;
+        const f = (1 - d / repulseDist) * repulseK * dt;
+        a.vx += ux * f; a.vy += uy * f;
+        b.vx -= ux * f; b.vy -= uy * f;
+      }
+    }
 
-        ctx.strokeStyle = hasMouse ? COLORS.lineAccent : COLORS.line;
+    // Per-node update.
+    for (const n of state.nodes) {
+      // Gaussian kernel weight for mouse proximity (0 when no mouse).
+      let mouseW = 0;
+      if (hasMouse) {
+        const dx = n.x - mx, dy = n.y - my;
+        mouseW = Math.exp(-(dx * dx + dy * dy) / MOUSE_SIGMA2);
+      }
+
+      // Wander noise, energy-boosted by mouse proximity.
+      n.wanderPhaseX += dt * (0.7 + Math.abs(n.drift) * 10);
+      n.wanderPhaseY += dt * (0.6 + Math.abs(n.drift) * 9);
+      const noiseAmp = baseNoiseAmp * (1 + mouseW * MOUSE_ENERGY);
+      n.vx += Math.cos(n.wanderPhaseX + n.angle * 0.2) * noiseAmp * dt;
+      n.vy += Math.sin(n.wanderPhaseY + n.angle * 0.2) * noiseAmp * dt;
+
+      // Mouse repulsion: gentle push away, weighted by Gaussian kernel.
+      if (mouseW > 0.005) {
+        const dx = n.x - mx, dy = n.y - my;
+        const d = Math.hypot(dx, dy) || 1;
+        const f = mouseW * MOUSE_REPULSE * dt;
+        n.vx += (dx / d) * f;
+        n.vy += (dy / d) * f;
+      }
+
+      // Friction + speed cap (cap raised slightly near mouse for liveliness).
+      n.vx *= friction;
+      n.vy *= friction;
+      const maxSpeed = baseMaxSpeed * (1 + mouseW * 1.4);
+      const sp = Math.hypot(n.vx, n.vy);
+      if (sp > maxSpeed) {
+        n.vx = (n.vx / sp) * maxSpeed;
+        n.vy = (n.vy / sp) * maxSpeed;
+      }
+
+      n.x += n.vx * dt;
+      n.y += n.vy * dt;
+
+      // Wrap edges (keeps motion continuous).
+      if (n.x < -20) n.x = state.w + 20;
+      if (n.x > state.w + 20) n.x = -20;
+      if (n.y < -20) n.y = state.h + 20;
+      if (n.y > state.h + 20) n.y = -20;
+    }
+
+    // Draw links.
+    for (let i = 0; i < state.nodes.length; i++) {
+      const a = state.nodes[i];
+      for (let j = i + 1; j < state.nodes.length; j++) {
+        const b = state.nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 > linkDist2) continue;
+        const alpha = (1 - Math.sqrt(d2) / linkDist) * 0.9;
+        ctx.strokeStyle = COLORS.line;
         ctx.globalAlpha = 0.55 * alpha;
         ctx.lineWidth = 1;
         ctx.beginPath();
@@ -249,7 +227,6 @@
       ctx.beginPath();
       ctx.arc(n.x, n.y, n.r * 2.2, 0, Math.PI * 2);
       ctx.fill();
-
       // core
       ctx.fillStyle = COLORS.node;
       ctx.beginPath();
@@ -304,14 +281,10 @@
 
   // Init
   sizeCanvas();
-  state.cx = state.w * 0.5;
-  state.cy = state.h * 0.45;
   makeNodes();
 
   window.addEventListener("resize", () => {
     sizeCanvas();
-    state.cx = state.w * 0.5;
-    state.cy = state.h * 0.45;
     makeNodes();
   }, { passive: true });
 

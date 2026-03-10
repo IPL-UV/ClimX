@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimX: Extreme-aware climate model emulation</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="bg.js" defer></script>
+    <!-- MathJax for LaTeX support -->
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        function toggleMenu() {
+            var x = document.getElementById("mobile-menu");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+</head>
+<body>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center;">
+                        <img src="imgs/logo.png" alt="ClimX logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">
+                        <strong>ClimX</strong>
+                    </a>
+                </div>
+                <div class="links desktop-links">
+                    <a href="index.html">Home</a>
+                    <a href="visualizations.html">Visualizations</a>
+                    <div class="dropdown">
+                        <button class="dropbtn" aria-haspopup="true">
+                            <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" focusable="false" aria-hidden="true">
+                                    <path d="M4 19a1 1 0 0 1-1-1V6a1 1 0 0 1 2 0v12h16a1 1 0 1 1 0 2H4Zm4-3a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6a1 1 0 0 1-1 1Zm4 0a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0v8a1 1 0 0 1-1 1Zm4 0a1 1 0 0 1-1-1V11a1 1 0 1 1 2 0v4a1 1 0 0 1-1 1Z"/>
+                                </svg>
+                                Baselines ▼
+                            </span>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="model_comparison.html"><strong>Comparison Summary</strong></a>
+<a href="climatology_monthly_results.html">Climatology Monthly</a>
+<a href="gnn_monthly_results.html">Gnn Monthly</a>
+<a href="linear_monthly_results.html">Linear Monthly</a>
+<a href="nn_monthly_results.html">Nn Monthly</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-menu-icon" onclick="toggleMenu()">
+                    &#9776;
+                </div>
+            </nav>
+            <div id="mobile-menu" class="mobile-links" style="display: none;">
+                <a href="index.html">Home</a>
+                <a href="visualizations.html">Visualizations</a>
+                <div class="mobile-divider">Baselines:</div>
+                <a href="model_comparison.html"><strong>Comparison Summary</strong></a>
+<a href="climatology_monthly_results.html">Climatology Monthly</a>
+<a href="gnn_monthly_results.html">Gnn Monthly</a>
+<a href="linear_monthly_results.html">Linear Monthly</a>
+<a href="nn_monthly_results.html">Nn Monthly</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container prose"><h1>Visualizations</h1>
+<p>This file contains various visualizations related to the climate model emulation project.</p>
+<h2>Data Maps</h2>
+<h3>Historical Data: outputs</h3>
+<div class="table-wrapper"><table>
+  <tr>
+    <td align="center"><b>data_map_huss_historical_2014-12-30 12:00:00.png</b></td>
+    <td align="center"><b>data_map_pr_historical_2014-12-30 12:00:00.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_map_huss_historical_2014-12-30 12:00:00.png" width="100%"></td>
+    <td><img src="results_full/historical_visuals/data_map_pr_historical_2014-12-30 12:00:00.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>data_map_psl_historical_2014-12-30 12:00:00.png</b></td>
+    <td align="center"><b>data_map_sfcWind_historical_2014-12-30 12:00:00.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_map_psl_historical_2014-12-30 12:00:00.png" width="100%"></td>
+    <td><img src="results_full/historical_visuals/data_map_sfcWind_historical_2014-12-30 12:00:00.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>data_map_tas_historical_2014-12-30 12:00:00.png</b></td>
+    <td align="center"><b>data_map_tasmax_historical_2014-12-30 12:00:00.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_map_tas_historical_2014-12-30 12:00:00.png" width="100%"></td>
+    <td><img src="results_full/historical_visuals/data_map_tasmax_historical_2014-12-30 12:00:00.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>data_map_tasmin_historical_2014-12-30 12:00:00.png</b></td>
+    <td></td>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_map_tasmin_historical_2014-12-30 12:00:00.png" width="100%"></td>
+    <td></td>
+  </tr>
+</table></div>
+
+<h3>Historical Data: aerosols</h3>
+<div class="table-wrapper"><table>
+  <tr>
+    <td align="center"><b>data_map_BC_AX_historical_2014-12-18 00:00:00.png</b></td>
+    <td align="center"><b>data_map_BC_N_historical_2014-12-18 00:00:00.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_map_BC_AX_historical_2014-12-18 00:00:00.png" width="100%"></td>
+    <td><img src="results_full/historical_visuals/data_map_BC_N_historical_2014-12-18 00:00:00.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>data_map_BC_N_historical_2014-12-18 00:00:00.png</b></td>
+    <td align="center"><b>data_map_SO4_historical_2014-12-18 00:00:00.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_map_BC_N_historical_2014-12-18 00:00:00.png" width="100%"></td>
+    <td><img src="results_full/historical_visuals/data_map_SO4_PR_historical_2014-12-18 00:00:00.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>data_map_OM_NI_historical_2014-12-18 00:00:00.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_map_OM_NI_historical_2014-12-18 00:00:00.png" width="100%"></td>
+  </tr>
+</table></div>
+
+<h2>Data Timeseries</h2>
+<h4>Historical Data: outputs</h4>
+<div class="table-wrapper"><table>
+  <tr>
+    <td align="center"><b>data_timeseries_huss_historical_40.0_-95.0.png</b></td>
+    <td align="center"><b>data_timeseries_pr_historical_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_timeseries_huss_historical_40.0_-95.0.png" width="100%"></td>
+    <td><img src="results_full/historical_visuals/data_timeseries_pr_historical_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>data_timeseries_psl_historical_40.0_-95.0.png</b></td>
+    <td align="center"><b>data_timeseries_sfcWind_historical_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_timeseries_psl_historical_40.0_-95.0.png" width="100%"></td>
+    <td><img src="results_full/historical_visuals/data_timeseries_sfcWind_historical_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>data_timeseries_tas_historical_40.0_-95.0.png</b></td>
+    <td align="center"><b>data_timeseries_tasmax_historical_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_timeseries_tas_historical_40.0_-95.0.png" width="100%"></td>
+    <td><img src="results_full/historical_visuals/data_timeseries_tasmax_historical_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>data_timeseries_tasmin_historical_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_timeseries_tasmin_historical_40.0_-95.0.png" width="100%"></td>
+    <td></td>
+  </tr>
+</table></div>
+
+<h3>Historical Data: forcing</h3>
+<div class="table-wrapper"><table>
+  <tr>
+    <td align="center"><b>data_timeseries_N2O_LBC_historical_40.0_-95.0.png</b></td>
+    <td align="center"><b>data_timeseries_CH4_LBC_historical_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_timeseries_N2O_LBC_historical_40.0_-95.0.png" width="100%"></td>
+    <td><img src="results_full/historical_visuals/data_timeseries_CH4_LBC_historical_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>data_timeseries_CFC11eq_LBC_historical_40.0_-95.0.png</b></td>
+    <td align="center"><b>data_timeseries_CF2CL2_LBC_historical_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_timeseries_CFC11eq_LBC_historical_40.0_-95.0.png" width="100%"></td>
+    <td><img src="results_full/historical_visuals/data_timeseries_CF2CL2_LBC_historical_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>data_timeseries_CO2_LBC_historical_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_timeseries_CO2_LBC_historical_40.0_-95.0.png" width="100%"></td>
+  </tr>
+</table></div>
+
+<h3>Historical Data: aerosols</h3>
+<div class="table-wrapper"><table>
+  <tr>
+    <td align="center"><b>data_timeseries_BC_AX_historical_40.0_-95.0.png</b></td>
+    <td align="center"><b>data_timeseries_BC_N_historical_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_timeseries_BC_AX_historical_40.0_-95.0.png" width="100%"></td>
+    <td><img src="results_full/historical_visuals/data_timeseries_BC_N_historical_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>data_timeseries_SO2_historical_40.0_-95.0.png</b></td>
+    <td align="center"><b>data_timeseries_SO4_PR_historical_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_timeseries_SO2_historical_40.0_-95.0.png" width="100%"></td>
+    <td><img src="results_full/historical_visuals/data_timeseries_SO4_PR_historical_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>data_timeseries_OM_NI_historical_40.0_-95.0.png</b></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img src="results_full/historical_visuals/data_timeseries_OM_NI_historical_40.0_-95.0.png" width="100%"></td>
+    <td></td>
+  </tr>
+</table></div>
+
+<h2>Climatology Visualizations</h2>
+<p>The following images show the climatology for different variables at latitude 40 and longitude -95. These are located in <code>results_subsampled_8/climatology/</code>.</p>
+<div class="table-wrapper"><table>
+  <tr>
+    <td align="center"><b>BC_AX_40_-95.png</b></td>
+    <td align="center"><b>BC_N_40_-95.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/climatology/BC_AX_40_-95.png" width="100%"></td>
+    <td><img src="results_subsampled_8/climatology/BC_N_40_-95.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>huss_40_-95.png</b></td>
+    <td align="center"><b>OM_NI_40_-95.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/climatology/huss_40_-95.png" width="100%"></td>
+    <td><img src="results_subsampled_8/climatology/OM_NI_40_-95.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>pr_40_-95.png</b></td>
+    <td align="center"><b>psl_40_-95.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/climatology/pr_40_-95.png" width="100%"></td>
+    <td><img src="results_subsampled_8/climatology/psl_40_-95.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>sfcWind_40_-95.png</b></td>
+    <td align="center"><b>SO2_40_-95.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/climatology/sfcWind_40_-95.png" width="100%"></td>
+    <td><img src="results_subsampled_8/climatology/SO2_40_-95.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>SO4_PR_40_-95.png</b></td>
+    <td align="center"><b>tas_40_-95.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/climatology/SO4_PR_40_-95.png" width="100%"></td>
+    <td><img src="results_subsampled_8/climatology/tas_40_-95.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>tasmax_40_-95.png</b></td>
+    <td align="center"><b>tasmin_40_-95.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/climatology/tasmax_40_-95.png" width="100%"></td>
+    <td><img src="results_subsampled_8/climatology/tasmin_40_-95.png" width="100%"></td>
+  </tr>
+</table></div>
+
+<h2>Example Plots</h2>
+<h3>Stationarity Check</h3>
+<p>This set of figures verifies that the de-stationarization process is working correctly. Each plot shows the raw data and its climatology (top panel) alongside the resulting anomaly (bottom panel) at latitude 40°N and longitude 95°W.</p>
+<h4>Output Variables</h4>
+<div class="table-wrapper"><table>
+  <tr>
+    <td align="center"><b>stationarity_check_huss_40_-95.png</b></td>
+    <td align="center"><b>stationarity_check_pr_40_-95.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/stationarity_plots/stationarity_check_huss_40_-95.png" width="100%"></td>
+    <td><img src="results_subsampled_8/stationarity_plots/stationarity_check_pr_40_-95.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>stationarity_check_psl_40_-95.png</b></td>
+    <td align="center"><b>stationarity_check_sfcWind_40_-95.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/stationarity_plots/stationarity_check_psl_40_-95.png" width="100%"></td>
+    <td><img src="results_subsampled_8/stationarity_plots/stationarity_check_sfcWind_40_-95.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>stationarity_check_tas_40_-95.png</b></td>
+    <td align="center"><b>stationarity_check_tasmax_40_-95.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/stationarity_plots/stationarity_check_tas_40_-95.png" width="100%"></td>
+    <td><img src="results_subsampled_8/stationarity_plots/stationarity_check_tasmax_40_-95.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>stationarity_check_tasmin_40_-95.png</b></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/stationarity_plots/stationarity_check_tasmin_40_-95.png" width="100%"></td>
+    <td></td>
+  </tr>
+</table></div>
+
+<h4>Forcing Variables</h4>
+<div class="table-wrapper"><table>
+  <tr>
+    <td align="center"><b>stationarity_check_BC_AX_40_-95.png</b></td>
+    <td align="center"><b>stationarity_check_BC_N_40_-95.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/stationarity_plots/stationarity_check_BC_AX_40_-95.png" width="100%"></td>
+    <td><img src="results_subsampled_8/stationarity_plots/stationarity_check_BC_N_40_-95.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>stationarity_check_SO2_40_-95.png</b></td>
+    <td align="center"><b>stationarity_check_SO4_PR_40_-95.png</b></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/stationarity_plots/stationarity_check_SO2_40_-95.png" width="100%"></td>
+    <td><img src="results_subsampled_8/stationarity_plots/stationarity_check_SO4_PR_40_-95.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>stationarity_check_OM_NI_40_-95.png</b></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img src="results_subsampled_8/stationarity_plots/stationarity_check_OM_NI_40_-95.png" width="100%"></td>
+    <td></td>
+  </tr>
+</table></div></div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 ClimX organizers. Powered by <a href="https://github.com/IPL-UV/ClimX">GitHub</a>.</p>
+            <p class="small-muted" style="margin-top: 0.75rem;">
+                Oscar Pellicer · Esther Rodrigo Bonet · Kai-Hendrik Cohrs · Maria Gonzalez · Nathan Mankovich · Gustau Camps-Valls
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

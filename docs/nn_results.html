@@ -1,0 +1,497 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimX: Extreme-aware climate model emulation</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="bg.js" defer></script>
+    <!-- MathJax for LaTeX support -->
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        function toggleMenu() {
+            var x = document.getElementById("mobile-menu");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+</head>
+<body>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center;">
+                        <img src="imgs/logo.png" alt="ClimX logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">
+                        <strong>ClimX</strong>
+                    </a>
+                </div>
+                <div class="links desktop-links">
+                    <a href="index.html">Home</a>
+                    <a href="visualizations.html">Visualizations</a>
+                    <div class="dropdown">
+                        <button class="dropbtn" aria-haspopup="true">
+                            <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" focusable="false" aria-hidden="true">
+                                    <path d="M4 19a1 1 0 0 1-1-1V6a1 1 0 0 1 2 0v12h16a1 1 0 1 1 0 2H4Zm4-3a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6a1 1 0 0 1-1 1Zm4 0a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0v8a1 1 0 0 1-1 1Zm4 0a1 1 0 0 1-1-1V11a1 1 0 1 1 2 0v4a1 1 0 0 1-1 1Z"/>
+                                </svg>
+                                Baselines ▼
+                            </span>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="climatology_results.html">Climatology</a>
+<a href="gnn_results.html">Gnn</a>
+<a href="lps_results.html">Lps</a>
+<a href="nn_results.html">Nn</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-menu-icon" onclick="toggleMenu()">
+                    &#9776;
+                </div>
+            </nav>
+            <div id="mobile-menu" class="mobile-links" style="display: none;">
+                <a href="index.html">Home</a>
+                <a href="visualizations.html">Visualizations</a>
+                <div class="mobile-divider">Baselines:</div>
+                <a href="climatology_results.html">Climatology</a>
+<a href="gnn_results.html">Gnn</a>
+<a href="lps_results.html">Lps</a>
+<a href="nn_results.html">Nn</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container prose"><h1>Nn Baseline Model Results</h1>
+<p>Here are the latest results after running the baseline nn model on the <code>ssp245</code> test scenario.</p>
+<h3>Kaggle Score</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nNSE (↑)</td>
+<td>-0.465821</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Quantitative Results</h3>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: right;">R²</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>tas</code> (Near-Surface Air Temperature)</td>
+<td style="text-align: right;">0.662</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>tasmax</code> (Daily Max Temperature)</td>
+<td style="text-align: right;">0.642</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>tasmin</code> (Daily Min Temperature)</td>
+<td style="text-align: right;">0.657</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>pr</code> (Precipitation)</td>
+<td style="text-align: right;">-0.082</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>huss</code> (Specific Humidity)</td>
+<td style="text-align: right;">0.557</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>psl</code> (Sea Level Pressure)</td>
+<td style="text-align: right;">0.205</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>sfcWind</code> (Surface Wind Speed)</td>
+<td style="text-align: right;">0.125</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Climate Extreme Indices Metrics:</strong></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align: left;">Index</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Unit</th>
+<th style="text-align: right;">RMSE</th>
+<th style="text-align: right;">R2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">FD</td>
+<td style="text-align: left;">FD</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">8.098</td>
+<td style="text-align: right;">-1.294</td>
+</tr>
+<tr>
+<td style="text-align: left;">SU</td>
+<td style="text-align: left;">SU</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">9.172</td>
+<td style="text-align: right;">-0.248</td>
+</tr>
+<tr>
+<td style="text-align: left;">ID</td>
+<td style="text-align: left;">ID</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">8.472</td>
+<td style="text-align: right;">-1.174</td>
+</tr>
+<tr>
+<td style="text-align: left;">TR</td>
+<td style="text-align: left;">TR</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">7.39</td>
+<td style="text-align: right;">-0.119</td>
+</tr>
+<tr>
+<td style="text-align: left;">GSL</td>
+<td style="text-align: left;">GSL</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">9.183</td>
+<td style="text-align: right;">0.298</td>
+</tr>
+<tr>
+<td style="text-align: left;">TXX</td>
+<td style="text-align: left;">TXX</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">3.816</td>
+<td style="text-align: right;">-0.606</td>
+</tr>
+<tr>
+<td style="text-align: left;">TNN</td>
+<td style="text-align: left;">TNN</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">4.215</td>
+<td style="text-align: right;">0.034</td>
+</tr>
+<tr>
+<td style="text-align: left;">WSDI</td>
+<td style="text-align: left;">WSDI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">58.704</td>
+<td style="text-align: right;">-1.922</td>
+</tr>
+<tr>
+<td style="text-align: left;">CSDI</td>
+<td style="text-align: left;">CSDI</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">3.311</td>
+<td style="text-align: right;">-0.112</td>
+</tr>
+<tr>
+<td style="text-align: left;">RX5DAY</td>
+<td style="text-align: left;">RX5DAY</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">34.615</td>
+<td style="text-align: right;">-2.165</td>
+</tr>
+<tr>
+<td style="text-align: left;">CDD</td>
+<td style="text-align: left;">CDD</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">204.257</td>
+<td style="text-align: right;">-921.49</td>
+</tr>
+<tr>
+<td style="text-align: left;">CWD</td>
+<td style="text-align: left;">CWD</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">83.093</td>
+<td style="text-align: right;">-544.811</td>
+</tr>
+<tr>
+<td style="text-align: left;">R95P</td>
+<td style="text-align: left;">R95P</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">0.004</td>
+<td style="text-align: right;">-9.783</td>
+</tr>
+<tr>
+<td style="text-align: left;">SDII</td>
+<td style="text-align: left;">SDII</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">4.457</td>
+<td style="text-align: right;">-62.973</td>
+</tr>
+<tr>
+<td style="text-align: left;">R10MM</td>
+<td style="text-align: left;">R10MM</td>
+<td style="text-align: left;"></td>
+<td style="text-align: right;">22.563</td>
+<td style="text-align: right;">-11.757</td>
+</tr>
+</tbody>
+</table></div>
+<h3>Visual Results</h3>
+<p>The visualizations for spatial maps and time series comparisons are generated within the <code>playground.ipynb</code> notebook. Below are all visuals from <code>nn_visuals/</code>.</p>
+<h4>Spatial Comparison Maps</h4>
+<div class="table-wrapper"><table>
+  <tr>
+<td align="center"><b>result_map_huss_2015-02-20.png</b></td>
+<td align="center"><b>result_map_pr_2015-02-20.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/result_map_huss_2015-02-20.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/result_map_pr_2015-02-20.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>result_map_psl_2015-02-20.png</b></td>
+<td align="center"><b>result_map_sfcWind_2015-02-20.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/result_map_psl_2015-02-20.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/result_map_sfcWind_2015-02-20.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>result_map_tas_2015-02-20.png</b></td>
+<td align="center"><b>result_map_tasmax_2015-02-20.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/result_map_tas_2015-02-20.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/result_map_tasmax_2015-02-20.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>result_map_tasmin_2015-02-20.png</b></td>
+<td align="center"></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/result_map_tasmin_2015-02-20.png" width="100%"></td>
+<td></td>
+  </tr>
+</table></div>
+
+<h4>Time Series Comparisons</h4>
+<div class="table-wrapper"><table>
+  <tr>
+<td align="center"><b>result_timeseries_huss_40.0_-95.0.png</b></td>
+<td align="center"><b>result_timeseries_pr_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/result_timeseries_huss_40.0_-95.0.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/result_timeseries_pr_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>result_timeseries_psl_40.0_-95.0.png</b></td>
+<td align="center"><b>result_timeseries_sfcWind_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/result_timeseries_psl_40.0_-95.0.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/result_timeseries_sfcWind_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>result_timeseries_tas_40.0_-95.0.png</b></td>
+<td align="center"><b>result_timeseries_tasmax_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/result_timeseries_tas_40.0_-95.0.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/result_timeseries_tasmax_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>result_timeseries_tasmin_40.0_-95.0.png</b></td>
+<td align="center"></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/result_timeseries_tasmin_40.0_-95.0.png" width="100%"></td>
+<td></td>
+  </tr>
+</table></div>
+
+<h4>Scatter Plots</h4>
+<div class="table-wrapper"><table>
+  <tr>
+<td align="center"><b>result_scatter_huss_2015-02-20.png</b></td>
+<td align="center"><b>result_scatter_pr_2015-02-20.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/result_scatter_huss_2015-02-20.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/result_scatter_pr_2015-02-20.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>result_scatter_psl_2015-02-20.png</b></td>
+<td align="center"><b>result_scatter_sfcWind_2015-02-20.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/result_scatter_psl_2015-02-20.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/result_scatter_sfcWind_2015-02-20.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>result_scatter_tas_2015-02-20.png</b></td>
+<td align="center"><b>result_scatter_tasmax_2015-02-20.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/result_scatter_tas_2015-02-20.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/result_scatter_tasmax_2015-02-20.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>result_scatter_tasmin_2015-02-20.png</b></td>
+<td align="center"></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/result_scatter_tasmin_2015-02-20.png" width="100%"></td>
+<td></td>
+  </tr>
+</table></div>
+
+<h4>Other Visualizations</h4>
+<div class="table-wrapper"><table>
+  <tr>
+<td align="center"><b>index_map_CDD_2065-01-01.png</b></td>
+<td align="center"><b>index_map_CSDI_2065-01-01.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_map_CDD_2065-01-01.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_map_CSDI_2065-01-01.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_map_CWD_2065-01-01.png</b></td>
+<td align="center"><b>index_map_FD_2065-01-01.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_map_CWD_2065-01-01.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_map_FD_2065-01-01.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_map_GSL_2065-01-01.png</b></td>
+<td align="center"><b>index_map_ID_2065-01-01.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_map_GSL_2065-01-01.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_map_ID_2065-01-01.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_map_R10mm_2065-01-01.png</b></td>
+<td align="center"><b>index_map_R95p_2065-01-01.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_map_R10mm_2065-01-01.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_map_R95p_2065-01-01.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_map_Rx5day_2019-03-01.png</b></td>
+<td align="center"><b>index_map_SDII_2065-01-01.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_map_Rx5day_2019-03-01.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_map_SDII_2065-01-01.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_map_SU_2065-01-01.png</b></td>
+<td align="center"><b>index_map_TNn_2019-03-01.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_map_SU_2065-01-01.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_map_TNn_2019-03-01.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_map_TR_2065-01-01.png</b></td>
+<td align="center"><b>index_map_TXx_2019-03-01.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_map_TR_2065-01-01.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_map_TXx_2019-03-01.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_map_WSDI_2065-01-01.png</b></td>
+<td align="center"><b>index_timeseries_CDD_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_map_WSDI_2065-01-01.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_timeseries_CDD_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_timeseries_CSDI_40.0_-95.0.png</b></td>
+<td align="center"><b>index_timeseries_CWD_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_timeseries_CSDI_40.0_-95.0.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_timeseries_CWD_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_timeseries_FD_40.0_-95.0.png</b></td>
+<td align="center"><b>index_timeseries_GSL_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_timeseries_FD_40.0_-95.0.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_timeseries_GSL_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_timeseries_ID_40.0_-95.0.png</b></td>
+<td align="center"><b>index_timeseries_R10mm_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_timeseries_ID_40.0_-95.0.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_timeseries_R10mm_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_timeseries_R95p_40.0_-95.0.png</b></td>
+<td align="center"><b>index_timeseries_Rx5day_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_timeseries_R95p_40.0_-95.0.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_timeseries_Rx5day_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_timeseries_SDII_40.0_-95.0.png</b></td>
+<td align="center"><b>index_timeseries_SU_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_timeseries_SDII_40.0_-95.0.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_timeseries_SU_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_timeseries_TNn_40.0_-95.0.png</b></td>
+<td align="center"><b>index_timeseries_TR_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_timeseries_TNn_40.0_-95.0.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_timeseries_TR_40.0_-95.0.png" width="100%"></td>
+  </tr>
+  <tr>
+<td align="center"><b>index_timeseries_TXx_40.0_-95.0.png</b></td>
+<td align="center"><b>index_timeseries_WSDI_40.0_-95.0.png</b></td>
+  </tr>
+  <tr>
+<td><img src="results_data/nn_visuals/index_timeseries_TXx_40.0_-95.0.png" width="100%"></td>
+<td><img src="results_data/nn_visuals/index_timeseries_WSDI_40.0_-95.0.png" width="100%"></td>
+  </tr>
+</table></div></div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 ClimX organizers. Powered by <a href="https://github.com/IPL-UV/ClimX">GitHub</a>.</p>
+            <p class="small-muted" style="margin-top: 0.75rem;">
+                Oscar Pellicer · Esther Rodrigo Bonet · Kai-Hendrik Cohrs · Maria Gonzalez · Nathan Mankovich · Gustau Camps-Valls
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

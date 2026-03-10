@@ -8,6 +8,7 @@ data/
 submission_lite/
 preprocessing_data_lite/
 results_lite/
+results_full/
 models_lite/
 
 # C extensions

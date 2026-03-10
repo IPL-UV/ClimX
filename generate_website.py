@@ -16,7 +16,7 @@ DOCS_DIR = 'docs'
 IMGS_DIR = 'imgs'
 CONTENT_FILE_MD = 'docs/web_content.md'
 CONTENT_FILE_HTML = 'docs/web_content.html'
-RESULTS_DIR = 'results_subsampled_8'
+RESULTS_DIR = 'results_full'
 RESULTS_ROOT_DIR = 'results' # New root results dir for data maps
 MODEL_COMPARISON_FILE = os.path.join(RESULTS_DIR, 'model_comparison.md')
 

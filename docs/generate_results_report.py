@@ -262,6 +262,7 @@ def create_comparison_table(results_dir):
     """
     metrics = {}
     indices = {}
+    kaggle_scores = {}
     json_files = sorted(results_dir.glob("*_evaluation.json"))
     for json_file in json_files:
         model_name = json_file.stem.split("_")[:-1]
@@ -277,6 +278,8 @@ def create_comparison_table(results_dir):
                     indices[model_name][k] = np.clip(v['r2'], -1, 1)
                 except:
                     indices[model_name][k] = np.nan
+            if 'kaggle_metric' in results:
+                kaggle_scores[model_name] = results['kaggle_metric']
 
     def format_to_string(value):
         if isinstance(value, (int, float)):
@@ -308,6 +311,8 @@ def create_comparison_table(results_dir):
     compilation_indices_md = compilation_indices.to_markdown()
 
     ranking = pd.DataFrame(data={'Metrics Count': metrics_max_count, 'Indices Count': indices_max_count, 'Total Count': metrics_max_count + indices_max_count})
+    if kaggle_scores:
+        ranking['Kaggle nNSE (↑)'] = pd.Series(kaggle_scores).map(lambda v: f'{v:.6f}')
     ranking = ranking.to_markdown()
 
     return compilation_metrics_md, compilation_indices_md, ranking
@@ -395,6 +400,11 @@ def generate_report(json_path: Union[str, Path], output_path: Optional[Union[str
     md_content.append(
         f"\nHere are the latest results after running the baseline {model_name} model on the `ssp245` test scenario."
     )
+
+    if "kaggle_metric" in data:
+        kaggle_val = data["kaggle_metric"]
+        md_content.append("\n### Kaggle Score\n")
+        md_content.append(f"| Metric | Score |\n|---|---|\n| nNSE (↑) | {kaggle_val:.6f} |")
 
     if "metrics" in data:
         md_content.append("\n### Quantitative Results\n")
