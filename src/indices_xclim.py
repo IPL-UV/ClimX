@@ -530,7 +530,7 @@ def sdii(ds: xr.Dataset, freq: str = "YS", thresh: str = 1, **_) -> xr.DataArray
     wet = pr.where(pr >= thresh)
     wet_sum = wet.resample(time=freq).sum(dim="time")
     wet_count = wet.resample(time=freq).count(dim="time")
-    return xr.where(wet_count == 0, 0, wet_sum / wet_count)
+    return xr.where(wet_count == 0, 0, wet_sum / wet_count).rename("SDII")
 
 
 def r10mm(ds: xr.Dataset, freq: str = "YS", **_) -> xr.DataArray:
