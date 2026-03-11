@@ -1,83 +1,9 @@
+# Data Visualizations
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClimX: Extreme-aware climate model emulation</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="bg.js" defer></script>
-    <!-- MathJax for LaTeX support -->
-    <script>
-    MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']]
-      }
-    };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-        function toggleMenu() {
-            var x = document.getElementById("mobile-menu");
-            if (x.style.display === "block") {
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
-            }
-        }
-    </script>
-</head>
-<body>
-    <canvas id="bg-canvas" aria-hidden="true"></canvas>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center;">
-                        <img src="imgs/logo.png" alt="ClimX logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">
-                        <strong>ClimX</strong>
-                    </a>
-                </div>
-                <div class="links desktop-links">
-                    <a href="index.html">Home</a>
-                    <a href="visualizations.html">Visualizations</a>
-                    <div class="dropdown">
-                        <button class="dropbtn" aria-haspopup="true">
-                            <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" focusable="false" aria-hidden="true">
-                                    <path d="M4 19a1 1 0 0 1-1-1V6a1 1 0 0 1 2 0v12h16a1 1 0 1 1 0 2H4Zm4-3a1 1 0 0 1-1-1V9a1 1 0 0 1 2 0v6a1 1 0 0 1-1 1Zm4 0a1 1 0 0 1-1-1V7a1 1 0 0 1 2 0v8a1 1 0 0 1-1 1Zm4 0a1 1 0 0 1-1-1V11a1 1 0 1 1 2 0v4a1 1 0 0 1-1 1Z"/>
-                                </svg>
-                                Baselines ▼
-                            </span>
-                        </button>
-                        <div class="dropdown-content">
-                            <a href="climatology_results.html">Climatology</a>
-<a href="gnn_results.html">Gnn</a>
-<a href="lps_results.html">Lps</a>
-<a href="nn_results.html">Nn</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="mobile-menu-icon" onclick="toggleMenu()">
-                    &#9776;
-                </div>
-            </nav>
-            <div id="mobile-menu" class="mobile-links" style="display: none;">
-                <a href="index.html">Home</a>
-                <a href="visualizations.html">Visualizations</a>
-                <div class="mobile-divider">Baselines:</div>
-                <a href="climatology_results.html">Climatology</a>
-<a href="gnn_results.html">Gnn</a>
-<a href="lps_results.html">Lps</a>
-<a href="nn_results.html">Nn</a>
-            </div>
-        </div>
-    </header>
+Below are the map and time series visualizations for the dataset variables.
 
-    <main>
-        <div class="container prose"><h1>Data Visualizations</h1>
-<p>Below are the map and time series visualizations for the dataset variables.</p>
-<h2>Spatial Maps</h2>
+## Spatial Maps
+
 <div class="visuals-grid">
 <figure><img src="results_data/historical_visuals/data_map_BC_AX_historical_2014-12-18 00:00:00.png" alt="data_map_BC_AX_historical_2014-12-18 00:00:00.png"><figcaption>BC_AX_historical_2014-12-18 00:00:00</figcaption></figure>
 <figure><img src="results_data/historical_visuals/data_map_BC_N_historical_2014-12-18 00:00:00.png" alt="data_map_BC_N_historical_2014-12-18 00:00:00.png"><figcaption>BC_N_historical_2014-12-18 00:00:00</figcaption></figure>
@@ -93,7 +19,8 @@
 <figure><img src="results_data/historical_visuals/data_map_tasmin_historical_2014-12-30 12:00:00.png" alt="data_map_tasmin_historical_2014-12-30 12:00:00.png"><figcaption>tasmin_historical_2014-12-30 12:00:00</figcaption></figure>
 </div>
 
-<h2>Time Series</h2>
+## Time Series
+
 <div class="visuals-grid">
 <figure><img src="results_data/historical_visuals/data_timeseries_BC_AX_historical_40.0_-95.0.png" alt="data_timeseries_BC_AX_historical_40.0_-95.0.png"><figcaption>BC_AX_historical_40.0_-95.0</figcaption></figure>
 <figure><img src="results_data/historical_visuals/data_timeseries_BC_N_historical_40.0_-95.0.png" alt="data_timeseries_BC_N_historical_40.0_-95.0.png"><figcaption>BC_N_historical_40.0_-95.0</figcaption></figure>
@@ -112,16 +39,4 @@
 <figure><img src="results_data/historical_visuals/data_timeseries_tas_historical_40.0_-95.0.png" alt="data_timeseries_tas_historical_40.0_-95.0.png"><figcaption>tas_historical_40.0_-95.0</figcaption></figure>
 <figure><img src="results_data/historical_visuals/data_timeseries_tasmax_historical_40.0_-95.0.png" alt="data_timeseries_tasmax_historical_40.0_-95.0.png"><figcaption>tasmax_historical_40.0_-95.0</figcaption></figure>
 <figure><img src="results_data/historical_visuals/data_timeseries_tasmin_historical_40.0_-95.0.png" alt="data_timeseries_tasmin_historical_40.0_-95.0.png"><figcaption>tasmin_historical_40.0_-95.0</figcaption></figure>
-</div></div>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 ClimX organizers. <strong><a href="https://isp.uv.es/">Image and Signal Processing Lab, University of València</a></strong> · Website powered by <a href="https://github.com/IPL-UV/ClimX">GitHub</a>.</p>
-            <p class="small-muted" style="margin-top: 0.75rem;">
-                Oscar J. Pellicer-Valero (<a href="mailto:oscar.pellicer@uv.es">oscar.pellicer@uv.es</a>) · Esther Rodrigo Bonet · Kai-Hendrik Cohrs · Maria Gonzalez · Nathan Mankovich · Gustau Camps-Valls
-            </p>
-        </div>
-    </footer>
-</body>
-</html>
+</div>

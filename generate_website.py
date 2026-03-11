@@ -51,10 +51,18 @@ if os.path.exists(IMGS_DIR):
 # 2. Copy result data (images/visuals)
 DEST_RESULTS = os.path.join(DOCS_DIR, 'results_data')
 if os.path.exists(RESULTS_DIR):
-    if os.path.exists(DEST_RESULTS):
-        shutil.rmtree(DEST_RESULTS)
-    # Copy results_subsampled_8 content
-    shutil.copytree(RESULTS_DIR, DEST_RESULTS, ignore=shutil.ignore_patterns('*.zarr', '*.nc'))
+    os.makedirs(DEST_RESULTS, exist_ok=True)
+    try:
+        shutil.copytree(RESULTS_DIR, DEST_RESULTS, dirs_exist_ok=True, ignore=shutil.ignore_patterns('*.zarr', '*.nc'))
+    except TypeError:
+        # Python < 3.8 fallback
+        for root, dirs, files in os.walk(RESULTS_DIR):
+            rel = os.path.relpath(root, RESULTS_DIR)
+            dest_root = os.path.join(DEST_RESULTS, rel) if rel != "." else DEST_RESULTS
+            os.makedirs(dest_root, exist_ok=True)
+            for fname in files:
+                if not fname.endswith('.zarr') and not fname.endswith('.nc'):
+                    shutil.copy2(os.path.join(root, fname), os.path.join(dest_root, fname))
     print(f"Copied {RESULTS_DIR} to {DEST_RESULTS} (excluding .zarr and .nc files)")
 
 # 2.1 Copy results root data (data maps, etc) if available
@@ -154,9 +162,9 @@ HTML_TEMPLATE = """
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 {site_short_name} organizers. Powered by <a href="{github_repo_url}">GitHub</a>.</p>
+            <p>&copy; 2026 {site_short_name} organizers. <strong><a href="https://isp.uv.es/">Image and Signal Processing Lab, University of València</a></strong> · Website powered by <a href="{github_repo_url}">GitHub</a>.</p>
             <p class="small-muted" style="margin-top: 0.75rem;">
-                Oscar Pellicer · Esther Rodrigo Bonet · Kai-Hendrik Cohrs · Maria Gonzalez · Nathan Mankovich · Gustau Camps-Valls
+                Oscar J. Pellicer-Valero (<a href="mailto:oscar.pellicer@uv.es">oscar.pellicer@uv.es</a>) · Esther Rodrigo Bonet · Kai-Hendrik Cohrs · Maria Gonzalez · Nathan Mankovich · Gustau Camps-Valls
             </p>
         </div>
     </footer>
@@ -247,17 +255,17 @@ def main():
         # Index list item with code link
         # Infer code path
         code_path = f"{GITHUB_REPO_URL}/tree/main/src/models"
-        if "Linear" in model_name:
-            code_file = "linear_model.py"
-            icon = "Linear"
+        if "Linear" in model_name or "Lps" in model_name:
+            code_file = "lps_model.py"
+            icon = "LPS"
         elif "Nn" in model_name or "Neural" in model_name:
             code_file = "nn_model.py"
             icon = "NN"
         elif "Gnn" in model_name:
-            code_file = "gnn_model.py"  # baseline implementation
+            code_file = "gnn_model.py"
             icon = "GNN"
         elif "Climatology" in model_name:
-            code_file = ""
+            code_file = "climatology_model.py"
             icon = "Climo"
         else:
             code_file = ""
@@ -325,6 +333,42 @@ def main():
 
     # Process Visualizations Page
     visualizations_file = 'visualizations.md'
+
+    # Auto-generate visualizations.md if it doesn't exist, by looking for existing images in docs
+    if not os.path.exists(visualizations_file) or not os.path.exists(os.path.join(DOCS_DIR, 'visualizations.html')):
+        try:
+            print("Generating visualizations page from existing images in docs...")
+            from pathlib import Path
+            
+            # Check for existing images in docs folder
+            search_dir = Path(DOCS_DIR) / 'results_data' / 'historical_visuals'
+            
+            maps = sorted(glob.glob(str(search_dir / 'data_map_*.png')))
+            timeseries = sorted(glob.glob(str(search_dir / 'data_timeseries_*.png')))
+            
+            # Auto-generate visualizations.md
+            with open(visualizations_file, 'w') as f:
+                f.write("# Data Visualizations\n\n")
+                f.write("Below are the map and time series visualizations for the dataset variables.\n\n")
+                
+                if maps:
+                    f.write("## Spatial Maps\n\n<div class=\"visuals-grid\">\n")
+                    for img in maps:
+                        basename = os.path.basename(img)
+                        # We are linking relative to the generated html in docs/
+                        f.write(f'<figure><img src="results_data/historical_visuals/{basename}" alt="{basename}"><figcaption>{basename.replace("data_map_", "").replace(".png", "")}</figcaption></figure>\n')
+                    f.write("</div>\n\n")
+                
+                if timeseries:
+                    f.write("## Time Series\n\n<div class=\"visuals-grid\">\n")
+                    for img in timeseries:
+                        basename = os.path.basename(img)
+                        f.write(f'<figure><img src="results_data/historical_visuals/{basename}" alt="{basename}"><figcaption>{basename.replace("data_timeseries_", "").replace(".png", "")}</figcaption></figure>\n')
+                    f.write("</div>\n")
+            print("Successfully auto-generated visualizations.md")
+        except Exception as e:
+            print(f"Error generating visualizations: {e}")
+
     if os.path.exists(visualizations_file):
         with open(visualizations_file, 'r') as f:
             viz_md = f.read()
