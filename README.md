@@ -1,5 +1,7 @@
 # ClimX: A Challenge for Extreme-Aware Climate Model Emulation
 
+![ClimX diagram](climX_diagram.jpg)
+
 ClimX focuses on emulating high-resolution daily climate outputs from the NorESM2-MM Earth System Model, with special emphasis on accurately reproducing climate extremes (e.g., heatwaves, droughts, and extreme precipitation), not just mean climate behavior.
 
 ## At a glance
