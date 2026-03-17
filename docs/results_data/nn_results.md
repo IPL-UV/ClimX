@@ -22,23 +22,23 @@ Here are the latest results after running the baseline nn model on the `ssp245` 
 
 **Climate Extreme Indices Metrics:**
 
-| Index   | Description   | Unit   |    RMSE |       R2 |
-|:--------|:--------------|:-------|--------:|---------:|
-| FD      | FD            |        |   8.098 |   -1.294 |
-| SU      | SU            |        |   9.172 |   -0.248 |
-| ID      | ID            |        |   8.472 |   -1.174 |
-| TR      | TR            |        |   7.39  |   -0.119 |
-| GSL     | GSL           |        |   9.183 |    0.298 |
-| TXX     | TXX           |        |   3.816 |   -0.606 |
-| TNN     | TNN           |        |   4.215 |    0.034 |
-| WSDI    | WSDI          |        |  58.704 |   -1.922 |
-| CSDI    | CSDI          |        |   3.311 |   -0.112 |
-| RX5DAY  | RX5DAY        |        |  34.615 |   -2.165 |
-| CDD     | CDD           |        | 204.257 | -921.49  |
-| CWD     | CWD           |        |  83.093 | -544.811 |
-| R95P    | R95P          |        |   0.004 |   -9.783 |
-| SDII    | SDII          |        |   4.457 |  -62.973 |
-| R10MM   | R10MM         |        |  22.563 |  -11.757 |
+| Index   | Description                   | Unit     | RMSE           |       R2 |
+|:--------|:------------------------------|:---------|:---------------|---------:|
+| FD      | Frost Days                    | days     | 8.098 days     |   -1.294 |
+| SU      | Summer Days (Tmax ≥ 25°C)     | days     | 9.172 days     |   -0.248 |
+| ID      | Ice Days (Tmax < 0°C)         | days     | 8.472 days     |   -1.174 |
+| TR      | Tropical Nights (Tmin ≥ 20°C) | days     | 7.390 days     |   -0.119 |
+| GSL     | Growing Season Length         | days     | 9.183 days     |    0.298 |
+| TXX     | Monthly Max of Daily Tmax     | °C       | 3.816 °C       |   -0.606 |
+| TNN     | Monthly Min of Daily Tmin     | °C       | 4.215 °C       |    0.034 |
+| WSDI    | Warm Spell Duration Index     | days     | 58.704 days    |   -1.922 |
+| CSDI    | Cold Spell Duration Index     | days     | 3.311 days     |   -0.112 |
+| RX5DAY  | Max 5-day Precipitation       | mm       | 34.615 mm      |   -2.165 |
+| CDD     | Consecutive Dry Days          | days     | 204.257 days   | -921.49  |
+| CWD     | Consecutive Wet Days          | days     | 83.093 days    | -544.811 |
+| R95P    | Total Precip above 95th pct   | mm       | 0.004 mm       |   -9.783 |
+| SDII    | Simple Daily Intensity Index  | mm day⁻¹ | 4.457 mm day⁻¹ |  -62.973 |
+| R10MM   | Days with Precip ≥10mm        | days     | 22.563 days    |  -11.757 |
 
 ### Visual Results
 
