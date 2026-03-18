@@ -17,6 +17,16 @@ try:
 except Exception:  # pragma: no cover
     INDEX_METADATA_XCLIM = {}
 
+try:
+    from ..index_metadata import INDEX_METADATA_OVERRIDES
+except Exception:  # pragma: no cover
+    try:
+        import sys, os
+        sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+        from index_metadata import INDEX_METADATA_OVERRIDES
+    except Exception:
+        INDEX_METADATA_OVERRIDES = {}
+
 
 def create_image_table(image_list, image_dir, md_file_path):
     """Creates a markdown table for a list of images."""
@@ -199,10 +209,20 @@ def _index_metadata_lookup(key: str) -> Dict[str, str]:
         or DEFAULT_INDEX_METADATA.get(key.upper())
         or INDEX_METADATA_XCLIM.get(key)
         or INDEX_METADATA_XCLIM.get(key.upper())
+        or INDEX_METADATA_OVERRIDES.get(key)
+        or INDEX_METADATA_OVERRIDES.get(key.upper())
     )
-    if not meta:
+    if not isinstance(meta, dict):
         return {"description": key.replace("_", " ").upper(), "unit": ""}
-    return meta
+
+    description = (
+        meta.get("description")
+        or meta.get("long_name")
+        or meta.get("name")
+        or key.replace("_", " ").upper()
+    )
+    unit = meta.get("unit") or meta.get("units") or ""
+    return {"description": description, "unit": unit}
 
 
 def format_indices_metrics(indices_metrics):
@@ -229,24 +249,26 @@ def format_indices_metrics(indices_metrics):
     error_notes = []
     for key, metrics in indices_metrics.items():
         meta = _index_metadata_lookup(key)
+        description = meta.get("description", key.replace("_", " ").upper())
+        unit = meta.get("unit", "")
         row = {
             "Index": key.upper(),
-            "Description": meta["description"],
-            "Unit": meta.get("unit", ""),
+            "Description": description,
+            "Unit": unit,
         }
 
         if isinstance(metrics, dict):
             error_message = metrics.get("error")
             for label in metric_keys:
                 value = metrics.get(label.lower())
-                unit = meta.get("unit", "") if label == "RMSE" else ""
-                row[label] = _format_index_value(value, unit)
+                metric_unit = unit if label == "RMSE" else ""
+                row[label] = _format_index_value(value, metric_unit)
             if error_message:
-                error_notes.append(f"- {meta['description']} ({key.upper()}): {error_message}")
+                error_notes.append(f"- {description} ({key.upper()}): {error_message}")
                 for label in metric_keys:
                     row[label] = "—"
         else:
-            row["VALUE"] = _format_index_value(metrics, meta.get("unit", ""))
+            row["VALUE"] = _format_index_value(metrics, unit)
 
         rows.append(row)
 
