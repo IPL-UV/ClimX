@@ -73,7 +73,7 @@ def format_indices(indices_pred, model_type, DATA_VERSION, save_indices=True):
     results_path.mkdir(exist_ok=True)
 
     # Save indices 
-    if True:
+    if save_indices:
         time_vals = indices_pred[list(indices_pred.keys())[0]].time
         for k, v in indices_pred.items():
             if 'forcing_scenario' in v.dims:
