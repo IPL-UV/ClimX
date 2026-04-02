@@ -35,7 +35,19 @@
     mouseY: null,
     raf: null,
     lastT: performance.now(),
+    isHeroVisible: false,
   };
+
+  function stopAnimation() {
+    if (state.raf) cancelAnimationFrame(state.raf);
+    state.raf = null;
+  }
+
+  function maybeStartAnimation() {
+    if (document.hidden || !state.isHeroVisible || state.raf) return;
+    state.lastT = performance.now();
+    state.raf = window.requestAnimationFrame(step);
+  }
 
   function sizeCanvas() {
     // Render only over the hero region (so it’s always visible on top of the hero background).
@@ -118,6 +130,11 @@
   }
 
   function step(t) {
+    if (document.hidden || !state.isHeroVisible) {
+      state.raf = null;
+      return;
+    }
+
     const dt = clamp((t - state.lastT) / 1000, 0.008, 0.05);
     state.lastT = t;
 
@@ -250,14 +267,20 @@
 
   function onVisibilityChange() {
     if (document.hidden) {
-      if (state.raf) cancelAnimationFrame(state.raf);
-      state.raf = null;
+      stopAnimation();
       return;
     }
-    if (!state.raf) {
-      state.lastT = performance.now();
-      state.raf = window.requestAnimationFrame(step);
+    maybeStartAnimation();
+  }
+
+  function onIntersection(entries) {
+    const [entry] = entries;
+    state.isHeroVisible = !!entry?.isIntersecting;
+    if (!state.isHeroVisible) {
+      stopAnimation();
+      return;
     }
+    maybeStartAnimation();
   }
 
   // Place canvas inside hero so it sits above hero background but below hero content.
@@ -292,6 +315,13 @@
   hero.addEventListener("mouseleave", onMouseLeave, { passive: true });
   document.addEventListener("visibilitychange", onVisibilityChange, { passive: true });
 
-  state.raf = window.requestAnimationFrame(step);
+  const observer = new IntersectionObserver(onIntersection, {
+    root: null,
+    threshold: 0.01,
+  });
+  observer.observe(hero);
+
+  state.isHeroVisible = hero.getBoundingClientRect().bottom > 0 && hero.getBoundingClientRect().top < window.innerHeight;
+  maybeStartAnimation();
 })();
 

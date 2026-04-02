@@ -7,10 +7,11 @@ ClimX focuses on emulating high-resolution daily climate outputs from the NorESM
 ## At a glance
 
 - **Core task:** Predict daily, 1° resolution climate variables from greenhouse gas and aerosol forcings.
+- **Submission rule:** Models must predict the daily target variables first; leaderboard indices must be computed from those outputs.
 - **Data:** Full dataset (~200GB, Hugging Face) and lightweight prototype dataset (<1GB, Kaggle).
 - **Evaluation:** Region-wise nNSE averaged across 15 extreme climate indices.
 - **Test setting:** Held-out SSP2-4.5 scenario.
-- **Optional track:** Probabilistic predictions evaluated with CRPS.
+- **Optional track:** Probabilistic predictions are evaluated with CRPS on a separate Kaggle UQ track.
 
 ## Getting started (recommended)
 
@@ -40,8 +41,13 @@ jupyter notebook
 
 ## Official challenge links
 
-- Kaggle: https://www.kaggle.com/competitions/climx
+- Kaggle main track: https://www.kaggle.com/competitions/climx
+- Kaggle UQ track: https://www.kaggle.com/competitions/clim-x-uq-track
 - Hugging Face dataset: https://huggingface.co/datasets/isp-uv-es/ClimX
 - Website: https://ipl-uv.github.io/ClimX/
+
+## Sponsorship
+
+ClimX is supported by ESA Phi-lab, which sponsors the challenge prizes and travel support for winning teams.
 
 
