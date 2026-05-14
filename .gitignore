@@ -5,6 +5,7 @@ __pycache__/
 
 # User-specific folders
 submission_final.tex
+/main.tex
 data/
 submission_lite/
 preprocessing_data_lite/

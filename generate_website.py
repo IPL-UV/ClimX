@@ -128,6 +128,10 @@ HTML_TEMPLATE = """
                 </div>
                 <div class="links desktop-links">
                     <a href="index.html">Home</a>
+                    <a href="index.html#timeline">Timeline</a>
+                    <a href="index.html#tutorials">Tutorials</a>
+                    <a href="index.html#faq">FAQ</a>
+                    <a href="index.html#contact">Contact</a>
                     <a href="visualizations.html">Visualizations</a>
                     <div class="dropdown">
                         <button class="dropbtn" aria-haspopup="true">
@@ -149,6 +153,10 @@ HTML_TEMPLATE = """
             </nav>
             <div id="mobile-menu" class="mobile-links" style="display: none;">
                 <a href="index.html">Home</a>
+                <a href="index.html#timeline">Timeline</a>
+                <a href="index.html#tutorials">Tutorials</a>
+                <a href="index.html#faq">FAQ</a>
+                <a href="index.html#contact">Contact</a>
                 <a href="visualizations.html">Visualizations</a>
                 <div class="mobile-divider">Baselines:</div>
                 {baseline_links_html}

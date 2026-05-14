@@ -81,7 +81,7 @@ main {
   background-position: center;
 }
 
-#baselines.section-alt {
+#get-started.section-alt {
   background:
     linear-gradient(180deg, rgba(248, 249, 250, 0.78) 0%, rgba(248, 249, 250, 0.78) 100%),
     url("imgs/bg_3_sm.jpg");

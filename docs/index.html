@@ -40,6 +40,10 @@
                 </div>
                 <div class="links desktop-links">
                     <a href="index.html">Home</a>
+                    <a href="index.html#timeline">Timeline</a>
+                    <a href="index.html#tutorials">Tutorials</a>
+                    <a href="index.html#faq">FAQ</a>
+                    <a href="index.html#contact">Contact</a>
                     <a href="visualizations.html">Visualizations</a>
                     <div class="dropdown">
                         <button class="dropbtn" aria-haspopup="true">
@@ -64,6 +68,10 @@
             </nav>
             <div id="mobile-menu" class="mobile-links" style="display: none;">
                 <a href="index.html">Home</a>
+                <a href="index.html#timeline">Timeline</a>
+                <a href="index.html#tutorials">Tutorials</a>
+                <a href="index.html#faq">FAQ</a>
+                <a href="index.html#contact">Contact</a>
                 <a href="visualizations.html">Visualizations</a>
                 <div class="mobile-divider">Baselines:</div>
                 <a href="climatology_results.html">Climatology</a>
@@ -77,7 +85,7 @@
     <main>
         <section class="hero">
     <div class="container">
-        <!-- <div class="hero-badge">IJCAI–ECAI 2026 challenge</div> -->
+        <div class="hero-badge">NeurIPS 2026 challenge</div>
         <img src="imgs/logo.png" alt="ClimX logo" class="hero-logo">
         <h1>ClimX</h1>
         <p class="subtitle">Extreme-aware climate model emulation</p>
@@ -365,17 +373,151 @@
 <section class="section" id="timeline">
     <div class="container">
         <h2>Timeline</h2>
-        <p class="lead">Proposed schedule for the IJCAI 2026 ClimX challenge</p>
+        <p class="lead">Proposed schedule for the NeurIPS 2026 ClimX challenge</p>
         <div class="timeline">
-            <div class="timeline-item"><strong>April 15, 2026</strong> — Challenge launch (Kaggle + Hugging Face release)</div>
-            <div class="timeline-item"><strong>July 15, 2026</strong> — Submission deadline (Kaggle evaluation closes)</div>
-            <div class="timeline-item"><strong>July 30, 2026</strong> — Winner notifications</div>
-            <div class="timeline-item"><strong>August 15–21, 2026</strong> — Workshop session at IJCAI 2026 (Bremen)</div>
+            <div class="timeline-item"><strong>May 1, 2026</strong> — Dataset and starter kit release</div>
+            <div class="timeline-item"><strong>June 15, 2026</strong> — Kaggle launch and call for participation</div>
+            <div class="timeline-item"><strong>July 15, 2026</strong> — Registration deadline</div>
+            <div class="timeline-item"><strong>October 15, 2026</strong> — Submission deadline and leaderboard freeze</div>
+            <div class="timeline-item"><strong>November 1, 2026</strong> — Winner notification and finalist reproducibility checks</div>
+            <div class="timeline-item"><strong>December 11–12, 2026</strong> — NeurIPS 2026 workshop, invited talks, and awards</div>
+            <div class="timeline-item"><strong>NeurIPS 2027</strong> — Organizers submit a competition summary or demo paper</div>
         </div>
     </div>
 </section>
 
-<section class="section section-alt" id="baselines">
+<section class="section section-alt" id="tutorials">
+    <div class="container">
+        <h2>Tutorials and starter resources</h2>
+        <p class="lead">Everything needed to get from data access to a valid submission</p>
+
+        <div class="cta-steps">
+            <div class="cta-step">
+                <div class="step-number">1</div>
+                <h3>Starter kit</h3>
+                <p>Clone the public repository for loaders, baselines, metrics, and submission templates for both tracks.</p>
+                <p><a href="https://github.com/IPL-UV/ClimX" target="_blank" rel="noopener noreferrer">Open the GitHub starter kit</a></p>
+            </div>
+            <div class="cta-step">
+                <div class="step-number">2</div>
+                <h3>Kaggle walkthrough</h3>
+                <p>Use the Kaggle competition page and notebooks for lite-data prototyping, submission formatting, and public leaderboard checks.</p>
+                <p><a href="https://www.kaggle.com/competitions/climx" target="_blank" rel="noopener noreferrer">Open the main track</a></p>
+            </div>
+            <div class="cta-step">
+                <div class="step-number">3</div>
+                <h3>Full-data training</h3>
+                <p>Use the Hugging Face dataset page for full-resolution training artifacts and access instructions.</p>
+                <p><a href="https://huggingface.co/datasets/isp-uv-es/ClimX" target="_blank" rel="noopener noreferrer">Open the dataset page</a></p>
+            </div>
+        </div>
+
+        <div class="callout subtle" style="margin-top: 1.5rem;">
+            <div class="callout-title">Recommended onboarding path</div>
+            <div class="callout-body">
+                <ul class="rules-list">
+                    <li>Start with the lite dataset on Kaggle to validate loading, training, and submission code end to end.</li>
+                    <li>Reproduce one of the provided baselines before scaling to the full dataset.</li>
+                    <li>Use the public evaluation code to verify index computation and file formatting before your first submission.</li>
+                    <li>Move to the Hugging Face full dataset only after the lite pipeline is stable.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="faq">
+    <div class="container">
+        <h2>FAQ</h2>
+        <p class="lead">Common participant questions, with the operational details collected in one place</p>
+
+        <div class="callout subtle" style="margin-bottom: 1.5rem;">
+            <div class="callout-title">Quick links</div>
+            <div class="callout-body">
+                <p>
+                    <a href="https://www.kaggle.com/competitions/climx" target="_blank" rel="noopener noreferrer">Main track</a> ·
+                    <a href="https://www.kaggle.com/competitions/clim-x-uq-track" target="_blank" rel="noopener noreferrer">UQ track</a> ·
+                    <a href="https://huggingface.co/datasets/isp-uv-es/ClimX" target="_blank" rel="noopener noreferrer">Full dataset</a> ·
+                    <a href="https://github.com/IPL-UV/ClimX" target="_blank" rel="noopener noreferrer">Starter kit</a> ·
+                    <a href="visualizations.html">Visualizations</a> ·
+                    <a href="model_comparison.html">Model comparison</a> ·
+                    <a href="https://climpact-sci.org/indices/" target="_blank" rel="noopener noreferrer">Climpact indices</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="two-col-grid">
+            <div>
+                <h3>Q: What exactly is the prediction task?</h3>
+                <p><strong>A:</strong> You build an emulator for daily NorESM2-MM surface fields at about 1-degree resolution. The model predicts 7 daily variables: <code>tas</code>, <code>tasmax</code>, <code>tasmin</code>, <code>pr</code>, <code>huss</code>, <code>psl</code>, and <code>sfcWind</code>. Those daily fields are then converted into the 15 climate-extreme indices used for ranking.</p>
+
+                <h3>Q: What are the official train and test splits?</h3>
+                <p><strong>A:</strong> The official training data are historical (1850-2014) plus SSP1-2.6, SSP3-7.0, and SSP5-8.5 (2015-2100). The held-out test scenario is SSP2-4.5. Only the SSP2-4.5 forcings are released publicly; the targets are withheld for evaluation.</p>
+
+                <h3>Q: Can I train directly on the 15 leaderboard indices?</h3>
+                <p><strong>A:</strong> No. Direct index prediction is not allowed. Your model must first output the daily target fields, and the submitted indices must be computed from those fields. This avoids metric-specific shortcuts and preserves spatial and cross-variable consistency.</p>
+
+                <h3>Q: Can I use external climate or weather datasets or pretrained models?</h3>
+                <p><strong>A:</strong> No. External CMIP6 data and models pretrained on other climate or weather data are prohibited for the competition. Use only the data released for ClimX and standard open-source ML tooling.</p>
+
+                <h3>Q: Which track should I enter?</h3>
+                <p><strong>A:</strong> Use the <a href="https://www.kaggle.com/competitions/climx" target="_blank" rel="noopener noreferrer">main track</a> if your goal is to compete on the primary challenge ranking and win ClimX overall, since the official winning teams are determined from the main deterministic leaderboard. Use the <a href="https://www.kaggle.com/competitions/clim-x-uq-track" target="_blank" rel="noopener noreferrer">UQ track</a> if your model outputs predictive distributions and you specifically want to be ranked with the CRPS-based uncertainty metric.</p>
+
+                <h3>Q: What is the recommended development workflow?</h3>
+                <p><strong>A:</strong> Start with the lite Kaggle dataset to debug your pipeline end to end, reproduce one of the provided baselines from the <a href="https://github.com/IPL-UV/ClimX" target="_blank" rel="noopener noreferrer">starter kit</a>, validate your submission formatting with the public evaluation code, and only then move to the <a href="https://huggingface.co/datasets/isp-uv-es/ClimX" target="_blank" rel="noopener noreferrer">full-resolution dataset</a>.</p>
+            </div>
+            <div>
+                <h3>Q: How are submissions ranked?</h3>
+                <p><strong>A:</strong> The main track is ranked by region-wise normalized Nash-Sutcliffe efficiency (nNSE), averaged across 15 extreme indices and AR6 land regions. The UQ track follows the same aggregation structure but replaces MSE with CRPS. See the <a href="https://climpact-sci.org/indices/" target="_blank" rel="noopener noreferrer">Climpact index definitions</a> for the underlying climate metrics.</p>
+
+                <h3>Q: Which indices are included?</h3>
+                <p><strong>A:</strong> ClimX uses 15 indices spanning temperature and precipitation extremes: FD, SU, ID, TR, GSL, TXx, TNn, WSDI, CSDI, Rx5day, CDD, CWD, R95p, SDII, and R10mm. The intent is to reward models that capture impact-relevant extremes rather than only mean fields.</p>
+
+                <h3>Q: What baseline models and references are available?</h3>
+                <p><strong>A:</strong> The repository includes Climatology, LPS, FFNN, and GNN baselines. You can browse generated reports from the <a href="climatology_results.html">Climatology</a>, <a href="lps_results.html">LPS</a>, <a href="nn_results.html">FFNN</a>, and <a href="gnn_results.html">GNN</a> pages, or compare them on the <a href="model_comparison.html">model comparison</a> page.</p>
+
+                <h3>Q: What will organizers request from top teams?</h3>
+                <p><strong>A:</strong> Finalists may be asked for inference code, training code, weights, environment details, and a short model card. The reproducibility package must run on at most one modern accelerator or equivalent CPU resources, use no more than 80GB of accelerator memory and 256GB of system RAM, and complete organizer-side inference within 24 hours.</p>
+
+                <h3>Q: How do you prevent cheating or leaderboard overfitting?</h3>
+                <p><strong>A:</strong> The competition uses a held-out SSP2-4.5 scenario, restricted data usage, organizer-side review of suspicious entries, and re-evaluation of finalist submissions. Teams that cannot pass reproducibility checks are not eligible for prizes or final ranking.</p>
+
+                <h3>Q: Are there prizes or workshop presentations?</h3>
+                <p><strong>A:</strong> Yes. ESA Phi-lab sponsors the challenge with awards for the top three main-track teams (€1,000, €500, and €300), partial travel support of up to €500 per winning team, certificates, and speaking slots at the NeurIPS 2026 workshop.</p>
+
+                <h3>Q: Where should I ask questions or report issues?</h3>
+                <p><strong>A:</strong> Use <a href="https://github.com/IPL-UV/ClimX/issues" target="_blank" rel="noopener noreferrer">GitHub issues</a> for starter-kit bugs and documentation clarifications, the <a href="https://www.kaggle.com/competitions/climx/discussion" target="_blank" rel="noopener noreferrer">Kaggle discussion forum</a> for competition questions, and <a href="mailto:oscar.pellicer@uv.es">email</a> for private matters such as reproducibility or eligibility questions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt" id="contact">
+    <div class="container">
+        <h2>Contact</h2>
+        <p class="lead">Organizer support channels for participants and reviewers</p>
+
+        <div class="platform-boxes">
+            <div class="platform-box">
+                <h3>Email the organizers</h3>
+                <p class="platform-size"><a href="mailto:oscar.pellicer@uv.es">oscar.pellicer@uv.es</a></p>
+                <p>Use email for private questions, reproducibility issues, or anything that should not be posted publicly.</p>
+            </div>
+            <div class="platform-box">
+                <h3>Public discussion</h3>
+                <p class="platform-size"><a href="https://github.com/IPL-UV/ClimX/issues" target="_blank" rel="noopener noreferrer">GitHub issues</a></p>
+                <p>Use issues for starter-kit bugs, documentation fixes, and technical clarifications that can help other teams.</p>
+            </div>
+            <div class="platform-box">
+                <h3>Competition updates</h3>
+                <p class="platform-size"><a href="https://www.kaggle.com/competitions/climx/discussion" target="_blank" rel="noopener noreferrer">Kaggle discussion forum</a></p>
+                <p>Timeline changes, FAQ updates, and competition announcements will be mirrored on the website and Kaggle pages.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="baselines">
     <div class="container">
         <h2>Baselines and results</h2>
         <p class="lead">Reference implementations and their performance reports</p>
@@ -422,7 +564,7 @@
     </div>
 </section>
 
-<section class="section cta" id="get-started">
+<section class="section section-alt cta" id="get-started">
     <div class="container">
         <h2>Get started</h2>
         <p class="lead">From zero to a valid submission</p>
