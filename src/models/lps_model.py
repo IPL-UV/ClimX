@@ -189,8 +189,8 @@ class LPSBaseline(Emulator):
             ).squeeze(0)
         else:
             solution_global = torch.linalg.lstsq(A_global, b_global).solution
-        self.W_global.data = solution_global[0, 0]
-        self.B_global.data = solution_global[1, 0]
+        self.W_global.data = solution_global[0, 0].clone()
+        self.B_global.data = solution_global[1, 0].clone()
 
         # Fit local model: y = w_local * tas_gm + b_local
         # Reshape for regression: (n_variables, n_samples, n_pixels)
@@ -213,8 +213,8 @@ class LPSBaseline(Emulator):
         else:
             solution_local = torch.linalg.lstsq(A_local, y_train_torch).solution
 
-        self.w_local.data = solution_local[:, 0, :]
-        self.b_local.data = solution_local[:, 1, :]
+        self.w_local.data = solution_local[:, 0, :].clone()
+        self.b_local.data = solution_local[:, 1, :].clone()
 
         logger.info("LPSModel fit complete.")            
 
