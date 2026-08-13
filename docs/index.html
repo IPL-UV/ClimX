@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ClimX: Extreme-aware climate model emulation</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20260813-2">
     <script src="bg.js" defer></script>
     <!-- MathJax for LaTeX support -->
     <script>
@@ -41,6 +41,7 @@
                 <div class="links desktop-links">
                     <a href="index.html">Home</a>
                     <a href="index.html#timeline">Timeline</a>
+                    <a href="index.html#prizes">Prizes</a>
                     <a href="index.html#tutorials">Tutorials</a>
                     <a href="index.html#faq">FAQ</a>
                     <a href="index.html#contact">Contact</a>
@@ -69,6 +70,7 @@
             <div id="mobile-menu" class="mobile-links" style="display: none;">
                 <a href="index.html">Home</a>
                 <a href="index.html#timeline">Timeline</a>
+                <a href="index.html#prizes">Prizes</a>
                 <a href="index.html#tutorials">Tutorials</a>
                 <a href="index.html#faq">FAQ</a>
                 <a href="index.html#contact">Contact</a>
@@ -85,7 +87,7 @@
     <main>
         <section class="hero">
     <div class="container">
-        <div class="hero-badge">NeurIPS 2026 challenge</div>
+        <div class="hero-badge">ClimX challenge · September–November 2026</div>
         <img src="imgs/logo.png" alt="ClimX logo" class="hero-logo">
         <h1>ClimX</h1>
         <p class="subtitle">Extreme-aware climate model emulation</p>
@@ -127,7 +129,7 @@
                 See baselines
             </a>
         </div>
-        <p class="hero-note">Supported by ESA Phi-lab. Deterministic and uncertainty-aware submissions are hosted on separate Kaggle competition pages.</p>
+        <p class="hero-note">ClimX will run independently from September 1 through November 30, 2026. If the accompanying paper is accepted at a NeurIPS 2026 workshop in Paris, conditional funding and an in-person results presentation will follow. Deterministic and uncertainty-aware submissions are hosted on separate Kaggle competition pages.</p>
 
         <div class="hero-stats" aria-label="Challenge highlights">
             <div class="stat-item">
@@ -373,20 +375,41 @@
 <section class="section" id="timeline">
     <div class="container">
         <h2>Timeline</h2>
-        <p class="lead">Proposed schedule for the NeurIPS 2026 ClimX challenge</p>
+        <p class="lead">The challenge runs independently; workshop participation and prize funding depend on paper acceptance</p>
         <div class="timeline">
-            <div class="timeline-item"><strong>May 1, 2026</strong> — Dataset and starter kit release</div>
-            <div class="timeline-item"><strong>June 15, 2026</strong> — Kaggle launch and call for participation</div>
-            <div class="timeline-item"><strong>July 15, 2026</strong> — Registration deadline</div>
-            <div class="timeline-item"><strong>October 15, 2026</strong> — Submission deadline and leaderboard freeze</div>
-            <div class="timeline-item"><strong>November 1, 2026</strong> — Winner notification and finalist reproducibility checks</div>
-            <div class="timeline-item"><strong>December 11–12, 2026</strong> — NeurIPS 2026 workshop, invited talks, and awards</div>
-            <div class="timeline-item"><strong>NeurIPS 2027</strong> — Organizers submit a competition summary or demo paper</div>
+            <div class="timeline-item"><strong>September 1, 2026</strong> — ClimX challenge opens</div>
+            <div class="timeline-item"><strong>September 29, 2026</strong> — Workshop paper acceptance notification</div>
+            <div class="timeline-item"><strong>November 30, 2026</strong> — ClimX submission deadline, leaderboard freeze, and reproducibility checks begin</div>
+            <div class="timeline-item"><strong>December 12 or 13, 2026</strong> — Results presented in person at the Workshop in Paris, if accepted</div>
+            <div class="timeline-item"><strong>After the challenge</strong> — Results proceed to a paper whether or not the Workshop submission is accepted</div>
         </div>
     </div>
 </section>
 
-<section class="section section-alt" id="tutorials">
+<section class="section section-alt" id="prizes">
+    <div class="container">
+        <h2>Prizes</h2>
+        <p class="lead">Prize funding and travel support are contingent on acceptance of the accompanying paper at the Workshop</p>
+        <div class="platform-boxes">
+            <div class="platform-box">
+                <h3>Main-track awards</h3>
+                <p class="platform-size">€1,000 · €500 · €300</p>
+                <p>The top three eligible main-track teams will receive first-, second-, and third-place awards funded by ESA Phi-lab if the paper is accepted.</p>
+            </div>
+            <div class="platform-box">
+                <h3>Travel support</h3>
+                <p class="platform-size">Up to €500 per winning team</p>
+                <p>If the paper is accepted, each winning team may receive partial travel support for the in-person results presentation at the NeurIPS 2026 workshop in Paris.</p>
+            </div>
+        </div>
+        <div class="callout warning">
+            <div class="callout-title">Funding is conditional on paper acceptance</div>
+            <div class="callout-body">The challenge will go ahead and the final rankings will be published regardless of the Workshop decision. The cash prizes and travel support described above will be available only if the accompanying paper is accepted. If it is not accepted, the challenge will conclude without ESA Phi-lab prize or travel funding.</div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="tutorials">
     <div class="container">
         <h2>Tutorials and starter resources</h2>
         <p class="lead">Everything needed to get from data access to a valid submission</p>
@@ -426,7 +449,7 @@
     </div>
 </section>
 
-<section class="section" id="faq">
+<section class="section section-alt" id="faq">
     <div class="container">
         <h2>FAQ</h2>
         <p class="lead">Common participant questions, with the operational details collected in one place</p>
@@ -440,7 +463,6 @@
                     <a href="https://huggingface.co/datasets/isp-uv-es/ClimX" target="_blank" rel="noopener noreferrer">Full dataset</a> ·
                     <a href="https://github.com/IPL-UV/ClimX" target="_blank" rel="noopener noreferrer">Starter kit</a> ·
                     <a href="visualizations.html">Visualizations</a> ·
-                    <a href="model_comparison.html">Model comparison</a> ·
                     <a href="https://climpact-sci.org/indices/" target="_blank" rel="noopener noreferrer">Climpact indices</a>
                 </p>
             </div>
@@ -474,7 +496,7 @@
                 <p><strong>A:</strong> ClimX uses 15 indices spanning temperature and precipitation extremes: FD, SU, ID, TR, GSL, TXx, TNn, WSDI, CSDI, Rx5day, CDD, CWD, R95p, SDII, and R10mm. The intent is to reward models that capture impact-relevant extremes rather than only mean fields.</p>
 
                 <h3>Q: What baseline models and references are available?</h3>
-                <p><strong>A:</strong> The repository includes Climatology, LPS, FFNN, and GNN baselines. You can browse generated reports from the <a href="climatology_results.html">Climatology</a>, <a href="lps_results.html">LPS</a>, <a href="nn_results.html">FFNN</a>, and <a href="gnn_results.html">GNN</a> pages, or compare them on the <a href="model_comparison.html">model comparison</a> page.</p>
+                <p><strong>A:</strong> The repository includes Climatology, LPS, FFNN, and GNN baselines. You can browse their generated reports on the <a href="climatology_results.html">Climatology</a>, <a href="lps_results.html">LPS</a>, <a href="nn_results.html">FFNN</a>, and <a href="gnn_results.html">GNN</a> pages.</p>
 
                 <h3>Q: What will organizers request from top teams?</h3>
                 <p><strong>A:</strong> Finalists may be asked for inference code, training code, weights, environment details, and a short model card. The reproducibility package must run on at most one modern accelerator or equivalent CPU resources, use no more than 80GB of accelerator memory and 256GB of system RAM, and complete organizer-side inference within 24 hours.</p>
@@ -483,7 +505,7 @@
                 <p><strong>A:</strong> The competition uses a held-out SSP2-4.5 scenario, restricted data usage, organizer-side review of suspicious entries, and re-evaluation of finalist submissions. Teams that cannot pass reproducibility checks are not eligible for prizes or final ranking.</p>
 
                 <h3>Q: Are there prizes or workshop presentations?</h3>
-                <p><strong>A:</strong> Yes. ESA Phi-lab sponsors the challenge with awards for the top three main-track teams (€1,000, €500, and €300), partial travel support of up to €500 per winning team, certificates, and speaking slots at the NeurIPS 2026 workshop.</p>
+                <p><strong>A:</strong> The challenge will run regardless of the Workshop decision. If the paper is accepted, ESA Phi-lab funding will support awards for the top three main-track teams (€1,000, €500, and €300), partial travel support of up to €500 per winning team, and an in-person results presentation at the NeurIPS 2026 workshop in Paris. If it is not accepted, there will be no ESA funding or workshop presentation, and the results will proceed directly to a paper.</p>
 
                 <h3>Q: Where should I ask questions or report issues?</h3>
                 <p><strong>A:</strong> Use <a href="https://github.com/IPL-UV/ClimX/issues" target="_blank" rel="noopener noreferrer">GitHub issues</a> for starter-kit bugs and documentation clarifications, the <a href="https://www.kaggle.com/competitions/climx/discussion" target="_blank" rel="noopener noreferrer">Kaggle discussion forum</a> for competition questions, and <a href="mailto:oscar.pellicer@uv.es">email</a> for private matters such as reproducibility or eligibility questions.</p>
@@ -492,7 +514,7 @@
     </div>
 </section>
 
-<section class="section section-alt" id="contact">
+<section class="section" id="contact">
     <div class="container">
         <h2>Contact</h2>
         <p class="lead">Organizer support channels for participants and reviewers</p>
@@ -517,7 +539,7 @@
     </div>
 </section>
 
-<section class="section" id="baselines">
+<section class="section section-alt" id="baselines">
     <div class="container">
         <h2>Baselines and results</h2>
         <p class="lead">Reference implementations and their performance reports</p>
@@ -564,7 +586,7 @@
     </div>
 </section>
 
-<section class="section section-alt cta" id="get-started">
+<section class="section cta" id="get-started">
     <div class="container">
         <h2>Get started</h2>
         <p class="lead">From zero to a valid submission</p>
@@ -585,7 +607,7 @@
                 <p>Compute the required indices from your emulator outputs, then submit to the deterministic or UQ Kaggle competition.</p>
             </div>
         </div>
-        <p class="organizers">ESA Phi-lab sponsors the challenge prizes and travel support for the winning teams.</p>
+        <p class="organizers">ESA Phi-lab prizes and travel support are contingent on acceptance of the accompanying paper at the Workshop.</p>
         <div class="cta-actions" style="margin-top: 1.5rem;">
             <a href="https://www.kaggle.com/competitions/climx" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open main track</a>
             <a href="https://www.kaggle.com/competitions/clim-x-uq-track" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Open UQ track</a>
@@ -600,7 +622,7 @@
         <div class="container">
             <p>&copy; 2026 ClimX organizers. <strong><a href="https://isp.uv.es/">Image and Signal Processing Lab, University of València</a></strong> · Website powered by <a href="https://github.com/IPL-UV/ClimX">GitHub</a>.</p>
             <p class="small-muted" style="margin-top: 0.75rem;">
-                Supported by ESA Phi-lab, which sponsors prizes and travel support for winning teams.
+                ESA Phi-lab prizes and travel support are contingent on acceptance of the accompanying paper at a NeurIPS 2026 workshop in Paris.
             </p>
             <p class="small-muted" style="margin-top: 0.75rem;">
                 Oscar J. Pellicer-Valero (<a href="mailto:oscar.pellicer@uv.es">oscar.pellicer@uv.es</a>) · Esther Rodrigo Bonet · Kai-Hendrik Cohrs · Maria Gonzalez · Nathan Mankovich · Gustau Camps-Valls

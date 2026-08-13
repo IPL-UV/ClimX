@@ -81,6 +81,31 @@ main {
   background-position: center;
 }
 
+/* Continue the background cycle for later image-backed sections. */
+#prizes.section-alt {
+  background:
+    linear-gradient(180deg, rgba(248, 249, 250, 0.78) 0%, rgba(248, 249, 250, 0.78) 100%),
+    url("imgs/bg_1_sm.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#faq.section-alt {
+  background:
+    linear-gradient(180deg, rgba(248, 249, 250, 0.78) 0%, rgba(248, 249, 250, 0.78) 100%),
+    url("imgs/bg_2_sm.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#baselines.section-alt {
+  background:
+    linear-gradient(180deg, rgba(248, 249, 250, 0.78) 0%, rgba(248, 249, 250, 0.78) 100%),
+    url("imgs/bg_3_sm.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 #get-started.section-alt {
   background:
     linear-gradient(180deg, rgba(248, 249, 250, 0.78) 0%, rgba(248, 249, 250, 0.78) 100%),
@@ -342,6 +367,22 @@ nav .links a:hover {
 
 .callout.subtle {
     border-left: 4px solid var(--accent);
+}
+
+.callout.warning {
+    background-color: #fff4cf;
+    background-image: none;
+    border-color: #f2cf66;
+    border-left: 5px solid #d99a00;
+    box-shadow: 0 6px 18px rgba(161, 98, 7, 0.12);
+}
+
+.callout.warning .callout-title {
+    color: #704800;
+}
+
+.callout.warning .callout-body {
+    color: #59410a;
 }
 
 .callout-title {

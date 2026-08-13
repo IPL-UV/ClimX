@@ -36,6 +36,7 @@ dependencies:
   - networkx=3.5
   - pip
   - tabulate
+  - markdown
   - pip:
       - torch==2.9.0
       - torch-geometric==2.7.0

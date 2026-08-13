@@ -3,11 +3,18 @@ from pathlib import Path
 import argparse
 import logging
 import pandas as pd
+import re
 
 from . import utils as V
 
 # Set up logging
 logger = logging.getLogger(__name__)
+
+
+def _windows_safe_filename_component(value):
+    """Return a filename component that is valid on Windows, macOS, and Linux."""
+    component = re.sub(r'[<>:"/\\|?*]', '-', str(value))
+    return component.rstrip(' .')
 
 def visualize_data(data_path, save_dir, variables_to_plot, scenario, time_index, lat, lon):
     """
@@ -51,7 +58,8 @@ def visualize_data(data_path, save_dir, variables_to_plot, scenario, time_index,
                 date_str = str(da_snapshot[time_coord].values).split('T')[0]
 
             title = f'{var} for {scenario} at {date_str}'
-            save_path = save_dir / f"data_map_{var}_{scenario}_{date_str}.png"
+            safe_date = _windows_safe_filename_component(date_str)
+            save_path = save_dir / f"data_map_{var}_{scenario}_{safe_date}.png"
             V.plot_spatial_maps([da_snapshot], [title], save_path)
         else:
             logger.info(f"Variable '{var}' is not spatial. Skipping map plot.")
@@ -101,4 +109,4 @@ if __name__ == "__main__":
     save_directory = Path('ClimateEmulation') / args.save_dir
     save_directory.mkdir(parents=True, exist_ok=True)
     
-    visualize_data(data_input_path, save_directory, args.vars, args.scenario, args.time_index, args.lat, args.lon) 
+    visualize_data(data_input_path, save_directory, args.vars, args.scenario, args.time_index, args.lat, args.lon)

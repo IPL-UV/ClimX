@@ -48,6 +48,4 @@ jupyter notebook
 
 ## Sponsorship
 
-ClimX is supported by ESA Phi-lab, which sponsors the challenge prizes and travel support for winning teams.
-
-
+ESA Phi-lab challenge prizes and travel support are contingent on acceptance of the accompanying paper at a NeurIPS 2026 workshop in Paris. The challenge itself will run independently from September 1 through November 30, 2026.

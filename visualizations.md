@@ -5,18 +5,18 @@ Below are the map and time series visualizations for the dataset variables.
 ## Spatial Maps
 
 <div class="visuals-grid">
-<figure><img src="results_data/historical_visuals/data_map_BC_AX_historical_2014-12-18 00:00:00.png" alt="data_map_BC_AX_historical_2014-12-18 00:00:00.png"><figcaption>BC_AX_historical_2014-12-18 00:00:00</figcaption></figure>
-<figure><img src="results_data/historical_visuals/data_map_BC_N_historical_2014-12-18 00:00:00.png" alt="data_map_BC_N_historical_2014-12-18 00:00:00.png"><figcaption>BC_N_historical_2014-12-18 00:00:00</figcaption></figure>
-<figure><img src="results_data/historical_visuals/data_map_OM_NI_historical_2014-12-18 00:00:00.png" alt="data_map_OM_NI_historical_2014-12-18 00:00:00.png"><figcaption>OM_NI_historical_2014-12-18 00:00:00</figcaption></figure>
-<figure><img src="results_data/historical_visuals/data_map_SO2_historical_2014-12-18 00:00:00.png" alt="data_map_SO2_historical_2014-12-18 00:00:00.png"><figcaption>SO2_historical_2014-12-18 00:00:00</figcaption></figure>
-<figure><img src="results_data/historical_visuals/data_map_SO4_PR_historical_2014-12-18 00:00:00.png" alt="data_map_SO4_PR_historical_2014-12-18 00:00:00.png"><figcaption>SO4_PR_historical_2014-12-18 00:00:00</figcaption></figure>
-<figure><img src="results_data/historical_visuals/data_map_huss_historical_2014-12-30 12:00:00.png" alt="data_map_huss_historical_2014-12-30 12:00:00.png"><figcaption>huss_historical_2014-12-30 12:00:00</figcaption></figure>
-<figure><img src="results_data/historical_visuals/data_map_pr_historical_2014-12-30 12:00:00.png" alt="data_map_pr_historical_2014-12-30 12:00:00.png"><figcaption>pr_historical_2014-12-30 12:00:00</figcaption></figure>
-<figure><img src="results_data/historical_visuals/data_map_psl_historical_2014-12-30 12:00:00.png" alt="data_map_psl_historical_2014-12-30 12:00:00.png"><figcaption>psl_historical_2014-12-30 12:00:00</figcaption></figure>
-<figure><img src="results_data/historical_visuals/data_map_sfcWind_historical_2014-12-30 12:00:00.png" alt="data_map_sfcWind_historical_2014-12-30 12:00:00.png"><figcaption>sfcWind_historical_2014-12-30 12:00:00</figcaption></figure>
-<figure><img src="results_data/historical_visuals/data_map_tas_historical_2014-12-30 12:00:00.png" alt="data_map_tas_historical_2014-12-30 12:00:00.png"><figcaption>tas_historical_2014-12-30 12:00:00</figcaption></figure>
-<figure><img src="results_data/historical_visuals/data_map_tasmax_historical_2014-12-30 12:00:00.png" alt="data_map_tasmax_historical_2014-12-30 12:00:00.png"><figcaption>tasmax_historical_2014-12-30 12:00:00</figcaption></figure>
-<figure><img src="results_data/historical_visuals/data_map_tasmin_historical_2014-12-30 12:00:00.png" alt="data_map_tasmin_historical_2014-12-30 12:00:00.png"><figcaption>tasmin_historical_2014-12-30 12:00:00</figcaption></figure>
+<figure><img src="results_data/historical_visuals/data_map_BC_AX_historical_2014-12-18 00-00-00.png" alt="data_map_BC_AX_historical_2014-12-18 00-00-00.png"><figcaption>BC_AX_historical_2014-12-18 00-00-00</figcaption></figure>
+<figure><img src="results_data/historical_visuals/data_map_BC_N_historical_2014-12-18 00-00-00.png" alt="data_map_BC_N_historical_2014-12-18 00-00-00.png"><figcaption>BC_N_historical_2014-12-18 00-00-00</figcaption></figure>
+<figure><img src="results_data/historical_visuals/data_map_OM_NI_historical_2014-12-18 00-00-00.png" alt="data_map_OM_NI_historical_2014-12-18 00-00-00.png"><figcaption>OM_NI_historical_2014-12-18 00-00-00</figcaption></figure>
+<figure><img src="results_data/historical_visuals/data_map_SO2_historical_2014-12-18 00-00-00.png" alt="data_map_SO2_historical_2014-12-18 00-00-00.png"><figcaption>SO2_historical_2014-12-18 00-00-00</figcaption></figure>
+<figure><img src="results_data/historical_visuals/data_map_SO4_PR_historical_2014-12-18 00-00-00.png" alt="data_map_SO4_PR_historical_2014-12-18 00-00-00.png"><figcaption>SO4_PR_historical_2014-12-18 00-00-00</figcaption></figure>
+<figure><img src="results_data/historical_visuals/data_map_huss_historical_2014-12-30 12-00-00.png" alt="data_map_huss_historical_2014-12-30 12-00-00.png"><figcaption>huss_historical_2014-12-30 12-00-00</figcaption></figure>
+<figure><img src="results_data/historical_visuals/data_map_pr_historical_2014-12-30 12-00-00.png" alt="data_map_pr_historical_2014-12-30 12-00-00.png"><figcaption>pr_historical_2014-12-30 12-00-00</figcaption></figure>
+<figure><img src="results_data/historical_visuals/data_map_psl_historical_2014-12-30 12-00-00.png" alt="data_map_psl_historical_2014-12-30 12-00-00.png"><figcaption>psl_historical_2014-12-30 12-00-00</figcaption></figure>
+<figure><img src="results_data/historical_visuals/data_map_sfcWind_historical_2014-12-30 12-00-00.png" alt="data_map_sfcWind_historical_2014-12-30 12-00-00.png"><figcaption>sfcWind_historical_2014-12-30 12-00-00</figcaption></figure>
+<figure><img src="results_data/historical_visuals/data_map_tas_historical_2014-12-30 12-00-00.png" alt="data_map_tas_historical_2014-12-30 12-00-00.png"><figcaption>tas_historical_2014-12-30 12-00-00</figcaption></figure>
+<figure><img src="results_data/historical_visuals/data_map_tasmax_historical_2014-12-30 12-00-00.png" alt="data_map_tasmax_historical_2014-12-30 12-00-00.png"><figcaption>tasmax_historical_2014-12-30 12-00-00</figcaption></figure>
+<figure><img src="results_data/historical_visuals/data_map_tasmin_historical_2014-12-30 12-00-00.png" alt="data_map_tasmin_historical_2014-12-30 12-00-00.png"><figcaption>tasmin_historical_2014-12-30 12-00-00</figcaption></figure>
 </div>
 
 ## Time Series
