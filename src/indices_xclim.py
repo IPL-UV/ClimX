@@ -87,14 +87,18 @@ def _pr(ds: xr.Dataset) -> xr.DataArray:
     return da
 
 
-def _precip_mm_day(ds: xr.Dataset, var: str = "pr") -> xr.DataArray:
-    da = _ensure_var(ds, var)
+def _precip_da_mm_day(da: xr.DataArray) -> xr.DataArray:
     units = da.attrs.get("units", "").lower()
     if units in ("mm/day", "mm d-1", "mm"):
         return da
     converted = da * KG_M2_S_TO_MM_DAY
+    converted.attrs.update(da.attrs)
     converted.attrs["units"] = "mm/day"
     return converted
+
+
+def _precip_mm_day(ds: xr.Dataset, var: str = "pr") -> xr.DataArray:
+    return _precip_da_mm_day(_ensure_var(ds, var))
 
 
 def _baseline_source_key(source: HistoricalData) -> Hashable:
@@ -559,9 +563,13 @@ def r95p(
 ) -> xr.DataArray:
     if historical_data_path is None:
         raise ValueError("R95p requires 'historical_data_path'.")
-    pr = _pr(ds)
-    threshold_doy = _percentile_threshold("pr", 95.0, historical_data_path, base_period)
-    return _pr_total_above_percentile(pr, threshold_doy, freq=freq, rechunk_time=rechunk_time).rename("R95p")
+    pr = _precip_mm_day(ds)
+    threshold_doy = _precip_da_mm_day(
+        _percentile_threshold("pr", 95.0, historical_data_path, base_period)
+    )
+    out = _pr_total_above_percentile(pr, threshold_doy, freq=freq, rechunk_time=rechunk_time).rename("R95p")
+    out.attrs["units"] = "mm"
+    return out
 
 
 def r99p(
@@ -813,4 +821,3 @@ for key in SELECTED_INDICES.keys():
         "description": override.get("description", _default_index_description(key)),
         "unit": override.get("unit", ""),
     }
-
