@@ -41,8 +41,8 @@ jupyter notebook
 
 ## Official challenge links
 
-- Kaggle main track: https://www.kaggle.com/competitions/climx
-- Kaggle UQ track: https://www.kaggle.com/competitions/clim-x-uq-track
+- Kaggle main track: https://www.kaggle.com/competitions/climx-main-track
+- Kaggle UQ track: https://www.kaggle.com/competitions/climx-uq-track
 - Hugging Face dataset: https://huggingface.co/datasets/isp-uv-es/ClimX
 - Website: https://ipl-uv.github.io/ClimX/
 
