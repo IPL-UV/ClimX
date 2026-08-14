@@ -48,4 +48,4 @@ jupyter notebook
 
 ## Sponsorship
 
-ESA Phi-lab challenge prizes and travel support are contingent on acceptance of the accompanying paper at a NeurIPS 2026 workshop in Paris. The challenge itself will run independently from September 1 through November 30, 2026.
+The challenge will run independently from September 1 through November 30, 2026. If the accompanying workshop paper is accepted, additional ESA Phi-lab prize and travel support is expected to become available.

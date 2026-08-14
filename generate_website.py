@@ -129,7 +129,6 @@ HTML_TEMPLATE = """
                 <div class="links desktop-links">
                     <a href="index.html">Home</a>
                     <a href="index.html#timeline">Timeline</a>
-                    <a href="index.html#prizes">Prizes</a>
                     <a href="index.html#tutorials">Tutorials</a>
                     <a href="index.html#faq">FAQ</a>
                     <a href="index.html#contact">Contact</a>
@@ -155,7 +154,6 @@ HTML_TEMPLATE = """
             <div id="mobile-menu" class="mobile-links" style="display: none;">
                 <a href="index.html">Home</a>
                 <a href="index.html#timeline">Timeline</a>
-                <a href="index.html#prizes">Prizes</a>
                 <a href="index.html#tutorials">Tutorials</a>
                 <a href="index.html#faq">FAQ</a>
                 <a href="index.html#contact">Contact</a>
@@ -173,9 +171,6 @@ HTML_TEMPLATE = """
     <footer class="footer">
         <div class="container">
             <p>&copy; 2026 {site_short_name} organizers. <strong><a href="https://isp.uv.es/">Image and Signal Processing Lab, University of València</a></strong> · Website powered by <a href="{github_repo_url}">GitHub</a>.</p>
-            <p class="small-muted" style="margin-top: 0.75rem;">
-                ESA Phi-lab prizes and travel support are contingent on acceptance of the accompanying paper at a NeurIPS 2026 workshop in Paris.
-            </p>
             <p class="small-muted" style="margin-top: 0.75rem;">
                 Oscar J. Pellicer-Valero (<a href="mailto:oscar.pellicer@uv.es">oscar.pellicer@uv.es</a>) · Esther Rodrigo Bonet · Kai-Hendrik Cohrs · Maria Gonzalez · Nathan Mankovich · Gustau Camps-Valls
             </p>
