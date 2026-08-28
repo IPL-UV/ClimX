@@ -48,4 +48,4 @@ jupyter notebook
 
 ## Sponsorship
 
-The launch challenge runs independently from September 1 through November 30, 2026; the benchmark remains available afterward. An accompanying paper has been submitted to *Tackling Climate Change with Machine Learning* at NeurIPS 2026 in Sydney. If accepted, additional ESA Phi-lab prize and travel support is expected to become available.
+The launch challenge runs independently from September 1 through November 30, 2026; the benchmark remains available afterward. The organizers plan to submit an accompanying paper to *Tackling Climate Change with Machine Learning* at NeurIPS 2026 in Sydney. If accepted, additional ESA Phi-lab prize and travel support is expected to become available.
