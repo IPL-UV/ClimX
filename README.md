@@ -1,8 +1,8 @@
-# ClimX: A Challenge for Extreme-Aware Climate Model Emulation
+# ClimX: A Benchmark for Extreme-Aware Climate Model Emulation
 
 ![ClimX diagram](climX_diagram.jpg)
 
-ClimX focuses on emulating high-resolution daily climate outputs from the NorESM2-MM Earth System Model, with special emphasis on accurately reproducing climate extremes (e.g., heatwaves, droughts, and extreme precipitation), not just mean climate behavior.
+ClimX is a persistent benchmark for emulating high-resolution daily climate outputs from the NorESM2-MM Earth System Model, with special emphasis on accurately reproducing climate extremes (e.g., heatwaves, droughts, and extreme precipitation), not just mean climate behavior. A September--November 2026 Kaggle challenge serves as a launch event to seed community use and establish an initial leaderboard.
 
 ## At a glance
 
@@ -39,7 +39,7 @@ jupyter notebook
 - `train.py`: Script-based baseline training workflow (useful when you prefer Python scripts over notebooks).
 - `src/`: Core code for preprocessing, models, metrics, utilities, and evaluation helpers.
 
-## Official challenge links
+## Benchmark and challenge links
 
 - Kaggle main track: https://www.kaggle.com/competitions/climx-main-track
 - Kaggle UQ track: https://www.kaggle.com/competitions/climx-uq-track
@@ -48,4 +48,4 @@ jupyter notebook
 
 ## Sponsorship
 
-The challenge will run independently from September 1 through November 30, 2026. If the accompanying workshop paper is accepted, additional ESA Phi-lab prize and travel support is expected to become available.
+The launch challenge runs independently from September 1 through November 30, 2026; the benchmark remains available afterward. An accompanying paper has been submitted to *Tackling Climate Change with Machine Learning* at NeurIPS 2026 in Sydney. If accepted, additional ESA Phi-lab prize and travel support is expected to become available.

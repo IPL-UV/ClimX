@@ -6,7 +6,7 @@ Here are the latest results after running the baseline gnn model on the `ssp245`
 
 | Metric | Score |
 |---|---|
-| nNSE (↑) | -0.482060 |
+| nNSE (↑) | -0.482596 |
 
 ### Quantitative Results
 
@@ -36,7 +36,7 @@ Here are the latest results after running the baseline gnn model on the `ssp245`
 | RX5DAY  | Max 5-day Precipitation       | mm       | 34.589 mm      |   -2.17  |
 | CDD     | Consecutive Dry Days          | days     | 202.794 days   | -916.76  |
 | CWD     | Consecutive Wet Days          | days     | 85.508 days    | -609.721 |
-| R95P    | Total Precip above 95th pct   | mm       | 0.004 mm       |   -9.783 |
+| R95P    | Total Precip above 95th pct   | mm       | 330.374 mm     |   -9.783 |
 | SDII    | Simple Daily Intensity Index  | mm day⁻¹ | 4.448 mm day⁻¹ |  -63.006 |
 | R10MM   | Days with Precip ≥10mm        | days     | 22.533 days    |  -11.731 |
 

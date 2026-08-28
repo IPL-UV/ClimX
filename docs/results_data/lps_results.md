@@ -6,7 +6,7 @@ Here are the latest results after running the baseline lps model on the `ssp245`
 
 | Metric | Score |
 |---|---|
-| nNSE (↑) | -0.448158 |
+| nNSE (↑) | -0.448684 |
 
 ### Quantitative Results
 
@@ -36,7 +36,7 @@ Here are the latest results after running the baseline lps model on the `ssp245`
 | RX5DAY  | Max 5-day Precipitation       | mm       | 34.487 mm      |   -2.127 |
 | CDD     | Consecutive Dry Days          | days     | 200.115 days   | -861.744 |
 | CWD     | Consecutive Wet Days          | days     | 86.731 days    | -611.384 |
-| R95P    | Total Precip above 95th pct   | mm       | 0.004 mm       |   -9.782 |
+| R95P    | Total Precip above 95th pct   | mm       | 330.364 mm     |   -9.782 |
 | SDII    | Simple Daily Intensity Index  | mm day⁻¹ | 4.432 mm day⁻¹ |  -61.804 |
 | R10MM   | Days with Precip ≥10mm        | days     | 22.538 days    |  -11.789 |
 

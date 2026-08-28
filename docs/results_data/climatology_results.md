@@ -6,7 +6,7 @@ Here are the latest results after running the baseline climatology model on the 
 
 | Metric | Score |
 |---|---|
-| nNSE (↑) | -0.564821 |
+| nNSE (↑) | -0.565348 |
 
 ### Quantitative Results
 
@@ -36,7 +36,7 @@ Here are the latest results after running the baseline climatology model on the 
 | RX5DAY  | Max 5-day Precipitation       | mm       | 34.462 mm      |   -2.139 |
 | CDD     | Consecutive Dry Days          | days     | 197.028 days   | -855.698 |
 | CWD     | Consecutive Wet Days          | days     | 86.032 days    | -613.164 |
-| R95P    | Total Precip above 95th pct   | mm       | 0.004 mm       |   -9.782 |
+| R95P    | Total Precip above 95th pct   | mm       | 330.328 mm     |   -9.782 |
 | SDII    | Simple Daily Intensity Index  | mm day⁻¹ | 4.411 mm day⁻¹ |  -61.883 |
 | R10MM   | Days with Precip ≥10mm        | days     | 22.489 days    |  -11.705 |
 
