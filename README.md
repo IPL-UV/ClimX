@@ -38,6 +38,13 @@ jupyter notebook
 - `environment.yml`: Full Python environment specification used by the notebook and training scripts.
 - `train.py`: Script-based baseline training workflow (useful when you prefer Python scripts over notebooks).
 - `src/`: Core code for preprocessing, models, metrics, utilities, and evaluation helpers.
+- `rnNSE.py`: Exact reference implementation of the Kaggle main-track leaderboard metric.
+
+## Main-track metric
+
+The main track uses region-wise normalized Nash–Sutcliffe efficiency (nNSE). For each climate index, a grid cell is valid when the population variance of its ground-truth time series is greater than `1e-6` (`ddof=0`). Only cells in the embedded AR6 land-region raster are scored. Cell nNSE values are weighted by cosine latitude within each region; valid regions are then weighted equally, followed by equal weighting across indices.
+
+The scorer expects complete `192×288` maps with rows ordered as time, latitude, then longitude. NaN and infinite predictions are invalid. See [`rnNSE.py`](rnNSE.py) for the exact implementation used by the competition.
 
 ## Benchmark and challenge links
 
