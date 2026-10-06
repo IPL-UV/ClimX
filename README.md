@@ -2,7 +2,7 @@
 
 ![ClimX diagram](climX_diagram.jpg)
 
-ClimX is a persistent benchmark for emulating high-resolution daily climate outputs from the NorESM2-MM Earth System Model, with special emphasis on accurately reproducing climate extremes (e.g., heatwaves, droughts, and extreme precipitation), not just mean climate behavior. A September--November 2026 Kaggle challenge serves as a launch event to seed community use and establish an initial leaderboard.
+ClimX is a persistent benchmark for emulating high-resolution daily climate outputs from the NorESM2-MM Earth System Model, with special emphasis on accurately reproducing climate extremes (e.g., heatwaves, droughts, and extreme precipitation), not just mean climate behavior. A September 1–December 15, 2026 Kaggle challenge, with €3,300 in prizes sponsored by ESA Φ-lab, serves as a launch event to seed community use and establish an initial leaderboard.
 
 ## At a glance
 
@@ -53,6 +53,18 @@ The scorer expects complete `192×288` maps with rows ordered as time, latitude,
 - Hugging Face dataset: https://huggingface.co/datasets/isp-uv-es/ClimX
 - Website: https://ipl-uv.github.io/ClimX/
 
-## Sponsorship
+## Prizes and sponsorship
 
-The launch challenge runs independently from September 1 through November 30, 2026; the benchmark remains available afterward. The organizers plan to submit an accompanying paper to *Tackling Climate Change with Machine Learning* at NeurIPS 2026 in Sydney. If accepted, additional ESA Phi-lab prize and travel support is expected to become available.
+The launch challenge runs from September 1 through **December 15, 2026**; the benchmark remains available afterward.
+
+Main-track prizes totalling **€3,300** are sponsored by **ESA Φ-lab** (European Space Agency):
+
+- 1st place: €1,800
+- 2nd place: €1,000
+- 3rd place: €500
+
+Prizes go to the top three main-track teams on the official leaderboard metric, subject to open-sourcing code and weights and passing finalist reproducibility checks.
+
+## Publication
+
+The challenge results will be submitted as a competition paper to a leading peer-reviewed journal in the field. The top three teams will be invited to contribute as co-authors, subject to meaningful scientific contributions and the journal's authorship requirements.

@@ -129,6 +129,7 @@ HTML_TEMPLATE = """
                 <div class="links desktop-links">
                     <a href="index.html">Home</a>
                     <a href="index.html#timeline">Timeline</a>
+                    <a href="index.html#prizes">Prizes</a>
                     <a href="index.html#tutorials">Tutorials</a>
                     <a href="index.html#faq">FAQ</a>
                     <a href="index.html#contact">Contact</a>
@@ -154,6 +155,7 @@ HTML_TEMPLATE = """
             <div id="mobile-menu" class="mobile-links" style="display: none;">
                 <a href="index.html">Home</a>
                 <a href="index.html#timeline">Timeline</a>
+                <a href="index.html#prizes">Prizes</a>
                 <a href="index.html#tutorials">Tutorials</a>
                 <a href="index.html#faq">FAQ</a>
                 <a href="index.html#contact">Contact</a>

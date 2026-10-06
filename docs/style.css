@@ -385,6 +385,73 @@ nav .links a:hover {
     color: #59410a;
 }
 
+/* Prizes */
+.sponsor-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    max-width: 520px;
+    margin: 1.5rem auto;
+    padding: 1.25rem 1rem;
+    background: #003247;
+    color: white;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.sponsor-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.sponsor-name {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.sponsor-sub {
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+.prize-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    max-width: 720px;
+    margin: 1.5rem auto;
+}
+
+.prize-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-top: 5px solid var(--accent);
+    border-radius: 12px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.prize-card.prize-1 { border-top-color: #d4a017; }
+.prize-card.prize-2 { border-top-color: #9aa5b1; }
+.prize-card.prize-3 { border-top-color: #b87333; }
+
+.prize-place {
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.prize-amount {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
 .callout-title {
     font-weight: 800;
     color: var(--primary);
@@ -844,7 +911,8 @@ tr:last-child td {
     .index-grid { grid-template-columns: 1fr; }
     .cta-steps { grid-template-columns: 1fr; }
     .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    
+    .prize-grid { grid-template-columns: 1fr; }
+
     nav .desktop-links { display: none !important; }
     .mobile-menu-icon { display: block; }
 }
