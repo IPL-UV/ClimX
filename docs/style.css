@@ -409,14 +409,55 @@ nav .links a:hover {
     opacity: 0.8;
 }
 
-.sponsor-name {
-    font-size: 2rem;
-    font-weight: 800;
+.sponsor-logo {
+    width: min(360px, 100%);
+    height: auto;
+    margin-top: 0.6rem;
 }
 
-.sponsor-sub {
-    font-size: 0.95rem;
-    opacity: 0.85;
+.hero-sponsor {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+}
+
+.hero-sponsor:hover {
+    text-decoration: none;
+}
+
+.hero-sponsor-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.hero-sponsor-logo {
+    width: min(300px, 80vw);
+    height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+}
+
+.footer-collab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 1.5rem 0 0.5rem;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.footer-collab-logo {
+    width: 220px;
+    max-width: 70vw;
+    height: auto;
 }
 
 .prize-grid {

@@ -1,5 +1,10 @@
 # ClimX: A Benchmark for Extreme-Aware Climate Model Emulation
 
+<p align="center">
+  <a href="https://philab.esa.int/"><img src="docs/imgs/esa_philab_logo_blue.svg" alt="ESA Φ-lab logo" width="320"></a><br>
+  <sub>Prizes sponsored by ESA Φ-lab</sub>
+</p>
+
 ![ClimX diagram](climX_diagram.jpg)
 
 ClimX is a persistent benchmark for emulating high-resolution daily climate outputs from the NorESM2-MM Earth System Model, with special emphasis on accurately reproducing climate extremes (e.g., heatwaves, droughts, and extreme precipitation), not just mean climate behavior. A September 1–December 15, 2026 Kaggle challenge, with €3,300 in prizes sponsored by ESA Φ-lab, serves as a launch event to seed community use and establish an initial leaderboard.
@@ -54,6 +59,8 @@ The scorer expects complete `192×288` maps with rows ordered as time, latitude,
 - Website: https://ipl-uv.github.io/ClimX/
 
 ## Prizes and sponsorship
+
+<a href="https://philab.esa.int/"><img src="docs/imgs/esa_philab_logo_blue.svg" alt="ESA Φ-lab logo" width="240"></a>
 
 The launch challenge runs from September 1 through **December 15, 2026**; the benchmark remains available afterward.
 
