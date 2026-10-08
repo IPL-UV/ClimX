@@ -386,7 +386,7 @@ nav .links a:hover {
 }
 
 /* Prizes */
-.sponsor-banner {
+.provider-banner {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -401,7 +401,7 @@ nav .links a:hover {
     text-align: center;
 }
 
-.sponsor-label {
+.provider-label {
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 1px;
@@ -409,13 +409,13 @@ nav .links a:hover {
     opacity: 0.8;
 }
 
-.sponsor-logo {
+.provider-logo {
     width: min(360px, 100%);
     height: auto;
     margin-top: 0.6rem;
 }
 
-.hero-sponsor {
+.hero-prizes {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
@@ -425,18 +425,18 @@ nav .links a:hover {
     text-decoration: none;
 }
 
-.hero-sponsor:hover {
+.hero-prizes:hover {
     text-decoration: none;
 }
 
-.hero-sponsor-label {
+.hero-prizes-label {
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
-.hero-sponsor-logo {
+.hero-prizes-logo {
     width: min(300px, 80vw);
     height: auto;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
