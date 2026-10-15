@@ -12,7 +12,7 @@ ClimX is a persistent benchmark for emulating high-resolution daily climate outp
 ## At a glance
 
 - **Core task:** Predict daily, 1° resolution climate variables from greenhouse gas and aerosol forcings.
-- **Submission rule:** Models must predict the daily target variables first; leaderboard indices must be computed from those outputs.
+- **Submission rule:** Models must predict the daily target variables first; leaderboard indices must be computed from those outputs with the official index code. The only operation allowed on computed indices is aggregation across realizations of the same emulator (an unweighted mean for the main track, or empirical quantiles for the UQ track). Fitted or tuned transforms of index maps, such as per-cell bias correction, temporal smoothing, or weighted blending of indices from different models, count as direct index prediction and are not allowed; apply such operations to the daily fields instead. Using training-scenario indices in losses, validation, or model selection is allowed, as long as the model output remains daily fields.
 - **Data:** Full dataset (~200GB, Hugging Face) and lightweight prototype dataset (<1GB, Kaggle).
 - **Evaluation:** Region-wise nNSE averaged across 15 extreme climate indices.
 - **Test setting:** Held-out SSP2-4.5 scenario.
