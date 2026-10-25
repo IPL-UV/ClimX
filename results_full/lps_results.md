@@ -42,8 +42,8 @@ Here are the latest results after running the baseline lps model on the `ssp245`
 
 ### Visual Results
 
-The visualizations for spatial maps and time series comparisons are generated within the `playground.ipynb` notebook. Below are all visuals from `lps_visuals/`.
-#### Spatial Comparison Maps
+Below are all visuals from `lps_visuals/`. To avoid revealing the held-out SSP2-4.5 targets, the maps show only the baseline predictions; index maps add each AR6 land region's nNSE over 2015–2100, as used by the leaderboard metric.
+#### Daily Prediction Maps (2015-02-20)
 
 <table>
   <tr>
@@ -80,81 +80,7 @@ The visualizations for spatial maps and time series comparisons are generated wi
   </tr>
 </table>
 
-#### Time Series Comparisons
-
-<table>
-  <tr>
-<td align="center"><b>result_timeseries_huss_40.0_-95.0.png</b></td>
-<td align="center"><b>result_timeseries_pr_40.0_-95.0.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/result_timeseries_huss_40.0_-95.0.png" width="100%"></td>
-<td><img src="lps_visuals/result_timeseries_pr_40.0_-95.0.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>result_timeseries_psl_40.0_-95.0.png</b></td>
-<td align="center"><b>result_timeseries_sfcWind_40.0_-95.0.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/result_timeseries_psl_40.0_-95.0.png" width="100%"></td>
-<td><img src="lps_visuals/result_timeseries_sfcWind_40.0_-95.0.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>result_timeseries_tas_40.0_-95.0.png</b></td>
-<td align="center"><b>result_timeseries_tasmax_40.0_-95.0.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/result_timeseries_tas_40.0_-95.0.png" width="100%"></td>
-<td><img src="lps_visuals/result_timeseries_tasmax_40.0_-95.0.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>result_timeseries_tasmin_40.0_-95.0.png</b></td>
-<td align="center"></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/result_timeseries_tasmin_40.0_-95.0.png" width="100%"></td>
-<td></td>
-  </tr>
-</table>
-
-#### Scatter Plots
-
-<table>
-  <tr>
-<td align="center"><b>result_scatter_huss_2015-02-20.png</b></td>
-<td align="center"><b>result_scatter_pr_2015-02-20.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/result_scatter_huss_2015-02-20.png" width="100%"></td>
-<td><img src="lps_visuals/result_scatter_pr_2015-02-20.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>result_scatter_psl_2015-02-20.png</b></td>
-<td align="center"><b>result_scatter_sfcWind_2015-02-20.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/result_scatter_psl_2015-02-20.png" width="100%"></td>
-<td><img src="lps_visuals/result_scatter_sfcWind_2015-02-20.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>result_scatter_tas_2015-02-20.png</b></td>
-<td align="center"><b>result_scatter_tasmax_2015-02-20.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/result_scatter_tas_2015-02-20.png" width="100%"></td>
-<td><img src="lps_visuals/result_scatter_tasmax_2015-02-20.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>result_scatter_tasmin_2015-02-20.png</b></td>
-<td align="center"></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/result_scatter_tasmin_2015-02-20.png" width="100%"></td>
-<td></td>
-  </tr>
-</table>
-
-#### Other Visualizations
+#### Index Maps
 
 <table>
   <tr>
@@ -215,66 +141,10 @@ The visualizations for spatial maps and time series comparisons are generated wi
   </tr>
   <tr>
 <td align="center"><b>index_map_WSDI_2065-01-01.png</b></td>
-<td align="center"><b>index_timeseries_CDD_40.0_-95.0.png</b></td>
+<td align="center"></td>
   </tr>
   <tr>
 <td><img src="lps_visuals/index_map_WSDI_2065-01-01.png" width="100%"></td>
-<td><img src="lps_visuals/index_timeseries_CDD_40.0_-95.0.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>index_timeseries_CSDI_40.0_-95.0.png</b></td>
-<td align="center"><b>index_timeseries_CWD_40.0_-95.0.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/index_timeseries_CSDI_40.0_-95.0.png" width="100%"></td>
-<td><img src="lps_visuals/index_timeseries_CWD_40.0_-95.0.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>index_timeseries_FD_40.0_-95.0.png</b></td>
-<td align="center"><b>index_timeseries_GSL_40.0_-95.0.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/index_timeseries_FD_40.0_-95.0.png" width="100%"></td>
-<td><img src="lps_visuals/index_timeseries_GSL_40.0_-95.0.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>index_timeseries_ID_40.0_-95.0.png</b></td>
-<td align="center"><b>index_timeseries_R10mm_40.0_-95.0.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/index_timeseries_ID_40.0_-95.0.png" width="100%"></td>
-<td><img src="lps_visuals/index_timeseries_R10mm_40.0_-95.0.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>index_timeseries_R95p_40.0_-95.0.png</b></td>
-<td align="center"><b>index_timeseries_Rx5day_40.0_-95.0.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/index_timeseries_R95p_40.0_-95.0.png" width="100%"></td>
-<td><img src="lps_visuals/index_timeseries_Rx5day_40.0_-95.0.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>index_timeseries_SDII_40.0_-95.0.png</b></td>
-<td align="center"><b>index_timeseries_SU_40.0_-95.0.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/index_timeseries_SDII_40.0_-95.0.png" width="100%"></td>
-<td><img src="lps_visuals/index_timeseries_SU_40.0_-95.0.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>index_timeseries_TNn_40.0_-95.0.png</b></td>
-<td align="center"><b>index_timeseries_TR_40.0_-95.0.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/index_timeseries_TNn_40.0_-95.0.png" width="100%"></td>
-<td><img src="lps_visuals/index_timeseries_TR_40.0_-95.0.png" width="100%"></td>
-  </tr>
-  <tr>
-<td align="center"><b>index_timeseries_TXx_40.0_-95.0.png</b></td>
-<td align="center"><b>index_timeseries_WSDI_40.0_-95.0.png</b></td>
-  </tr>
-  <tr>
-<td><img src="lps_visuals/index_timeseries_TXx_40.0_-95.0.png" width="100%"></td>
-<td><img src="lps_visuals/index_timeseries_WSDI_40.0_-95.0.png" width="100%"></td>
+<td></td>
   </tr>
 </table>

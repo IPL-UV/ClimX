@@ -75,7 +75,7 @@ def format_visuals_section(image_dir, md_file_path):
     )
 
     if maps:
-        content.append("#### Spatial Comparison Maps\n")
+        content.append("#### Daily Prediction Maps (2015-02-20)\n")
         content.append(create_image_table(maps, image_dir, md_file_path))
     if timeseries:
         content.append("#### Time Series Comparisons\n")
@@ -84,7 +84,7 @@ def format_visuals_section(image_dir, md_file_path):
         content.append("#### Scatter Plots\n")
         content.append(create_image_table(scatter, image_dir, md_file_path))
     if other_visuals:
-        content.append("#### Other Visualizations\n")
+        content.append("#### Index Maps\n")
         content.append(create_image_table(other_visuals, image_dir, md_file_path))
 
     return "\n".join(content)
@@ -439,7 +439,7 @@ def generate_report(json_path: Union[str, Path], output_path: Optional[Union[str
         md_content.append("\n### Visual Results\n")
         relative_image_dir = os.path.relpath(image_dir, output_path.parent)
         md_content.append(
-            f"The visualizations for spatial maps and time series comparisons are generated within the `playground.ipynb` notebook. Below are all visuals from `{relative_image_dir}/`."
+            f"Below are all visuals from `{relative_image_dir}/`. To avoid revealing the held-out SSP2-4.5 targets, the maps show only the baseline predictions; index maps add each AR6 land region's nNSE over 2015–2100, as used by the leaderboard metric."
         )
         md_content.append(format_visuals_section(image_dir, output_path))
 
